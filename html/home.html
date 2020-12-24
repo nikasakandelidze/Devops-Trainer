@@ -2,46 +2,85 @@
 <html>
 <head>
 
-	<title>Trainer</title>
+    <title>Trainer</title>
 
-	<link rel="stylesheet" type="text/css" href="../css/home.css">
+    <link rel="stylesheet" type="text/css" href="../css/home.css">
 
 </head>
 <body>
-	<div class="main_container">
-		<header>
-			
-			<div class="navigation_container">
-				
-				<nav>
-					<ul>
-						<li> <a href="">Docker</a> </li>
+<div class="base_container">
 
-						<li> <a href="">Git</a> </li>
+    <div class="navigation_container">
 
-						<li> <a href="">About</a> </li>
-					</ul>
-				</nav>
-				
+        <nav>
+            <ul>
 
-			</div>
+                <li><a href="">Git</a></li>
 
-		</header>
-		
+                <li><a href="">About</a></li>
 
-		<div class="dynamiccontent_container">
+            </ul>
+        </nav>
 
-			<div class="console_container">
-				console
-			</div>
 
-			<div class="visualisation_container">
-					visual
-			</div>
+    </div>
 
-		</div>
+    <div class="main_container">
 
-	</div>
+        <div class="interactive_container">
 
+            <div class="console_container">
+
+                <input id="console_input" type="text">
+
+                <div>
+
+                    <button id="answer_submit_button">Submit</button>
+
+                </div>
+
+            </div>
+
+            <div class="visualisation_container">
+
+                <div id="submit_response">
+                    <div style="display: none;" id="correct_response">
+
+                        <img style="width: 150px; height: 150px;" src="../statics/check.svg"/>
+
+                    </div>
+
+                    <div style="display: none;" id="incorrect_response">
+
+                        <img style="width: 150px; height: 150px;" src="../statics/delete.svg"/>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="data_container">
+
+            <div id="actual_question"></div>
+
+            <div id="next_question_container">
+                <button id="next_question_button">Next</button>
+            </div>
+            <div id="answer_result">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<script src="../js/model/questions/Questions.js"></script>
+<script src="../js/model/Model.js"></script>
+<script src="../js/view/View.js"></script>
+<script src="../js/controller/Controller.js"></script>
+<script src="../js/index.js"></script>
 </body>
 </html>

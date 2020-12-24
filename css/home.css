@@ -1,54 +1,87 @@
-/*body{
-	background-color: red;
-}*/
-body{
-	margin:0;
-	background-color: #4f5d75;
+
+.interactive_container{
+    background-color: darkblue;
+    height: 370px;
+    display: flex;
 }
 
-header{
-	background-color: #55d6aa;
+.console_container{
+    background-color: cornflowerblue;
+    width: 30%;
 }
 
-header::after{
-	content: '';
-	display: table;
-	clear: both;
+.visualisation_container{
+    background-color: blueviolet;
+    width: 70%;
 }
 
-
-.navigation_container nav{
-	float:left;
+.data_container{
+    background-color: crimson;
+    height: 130px;
+    padding: 20px;
+    display: flex;
 }
 
-.navigation_container nav ul {
-	margin:0;
-	padding: 0;
-	list-style: none;
-	width: 100%;
+#next_question_button{
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    color: azure;
+    border-radius: 10px;
+    margin-left: 40%;
+    margin-top: 20%;
+    transition: ease-in-out 0.3s;
 }
 
-
-.navigation_container nav ul li{
-	display: inline-block;
-	padding-top: 25px;
-	padding-bottom: 25px;
-	border: 1px solid;
-	width: 200px;
-	margin: 5px;
-	padding-left: 80px;
-	margin-left: 150px;
+#answer_submit_button{
+    width: 100px;
+    height: 35px;
+    background-color: azure;
+    color: black;
+    border-radius: 10px;
+    margin-left: 20%;
+    margin-top: 3%;
+    transition: ease-in-out 0.3s;
 }
 
-.navigation_container nav ul li:hover{
-	background-color: #96cbff;
+#answer_submit_button:hover{
+    transform: scale(1.2);
+}
+#next_question_button:hover{
+    transform: scale(1.2);
+    background-color: azure;
+    color: blue;
+    font-size: x-large;
 }
 
+#console_input{
+    width: 300px;
+    height: 300px;
+    align-content: center;
+    background-color: black;
+    color: darkgreen;
+    overflow-wrap: anywhere;
+    overflow-y: auto;
+    font-size: xx-large;
+}
 
-.navigation_container nav ul li a{
-	text-decoration: none;
-	text-transform: uppercase;
-	font-size: 25px;
-	color: #4f5d75;
+#actual_question{
+    border: 2px solid black;
+    border-radius: 30px;
+    background-color: azure;
+    height: 70px;
+    width: 60%;
+    margin-top: 10px;
+    margin-left: 2%;
+    text-align: center;
+    padding-bottom: 20px;
+    transition: ease-in-out 0.2s;
+    padding-top: 3%;
+    font-size: x-large;
+}
 
+#submit_response{
+    margin-left: 30%;
+    margin-top: 10%;
+    opacity: 70%;
 }

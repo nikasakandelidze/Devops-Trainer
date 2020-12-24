@@ -1,1 +1,1 @@
-index
+controller.init();
