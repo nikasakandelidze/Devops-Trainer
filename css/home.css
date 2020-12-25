@@ -1,38 +1,45 @@
 
 .interactive_container{
-    background-color: darkblue;
     height: 370px;
     display: flex;
+    border: 1px solid black;
 }
 
 .console_container{
-    background-color: cornflowerblue;
-    width: 30%;
+    background-color: aliceblue;
+    width: 29%;
+}
+
+#user_input_container{
+    border: 1px solid black;
+    padding: 2%;
+    padding-left: 5%;
 }
 
 .visualisation_container{
-    background-color: blueviolet;
-    width: 70%;
+    background-color: aliceblue;
+    width: 71%;
 }
 
 .data_container{
-    background-color: crimson;
+    background-color: slategrey;
     height: 130px;
     padding: 20px;
     display: flex;
+    border: 1px solid black;
 }
 
 #next_question_button{
-    background-color: blue;
+    background-color: darkolivegreen;
     color: azure;
     margin-left: 40%;
-    margin-top: 20%;
+    margin-top: 35%;
 }
 
 .my_button{
-    width: 100px;
-    height: 100px;
-    transition: ease-in-out 0.3s;
+    width: 70px;
+    height: 60px;
+    transition: ease-in-out 0.1s;
     border-radius: 10px;
 }
 
@@ -42,7 +49,7 @@
     background-color: azure;
     color: black;
     border-radius: 10px;
-    margin-left: 20%;
+    margin-left: 26%;
     margin-top: 3%;
     transition: ease-in-out 0.3s;
 }
@@ -54,7 +61,6 @@
     transform: scale(1.2);
     background-color: azure;
     color: blue;
-    font-size: x-large;
 }
 
 #question_hint_button{
@@ -110,16 +116,27 @@
     transition: ease-in-out 0.4s;
 }
 
+.modal{
+    background-color: azure;
+    width: 700px;
+    height: 500px;
+    position: absolute;
+    margin-left: 17%;
+    border-radius: 20px;
+    border: 1px solid black;
+    margin-top: -2%;
+    transition: ease-in-out 0.4s;
+}
+
 .hint_text_container{
     width: 90%;
     height: 45%;
-    background-color: cornflowerblue;
     margin-left: 6%;
     border-radius: 20px;
     font-size: xxx-large;
     text-align: center;
     overflow-y: scroll;
-    border: 1px black solid;
+    border: 3px black solid;
 }
 
 .unblur_up_text{
@@ -129,9 +146,10 @@
     position: absolute;
     z-index: 1;
     border-radius: 20px;
-    opacity: 30%;
+    opacity: 70%;
     margin-left: 35%;
     margin-top: 10%;
+    border: 1px solid black;
 }
 
 .unblur_up_text:hover{
@@ -160,6 +178,10 @@
     color: red;
     transform: rotate(360deg);
     cursor: default;
+}
+
+#welcome_container{
+    text-align: center;
 }
 
 body{

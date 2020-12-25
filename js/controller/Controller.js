@@ -40,6 +40,16 @@ let controller = (function (store,view){
         });
     };
 
+    let initialiseWelcomeWindow = () => {
+        view.makeElementWithIdApear('welcome_container');
+        document.querySelector('#close_welcome_window').addEventListener('click', e=>{
+            view.makeElementWithIdDissapear('welcome_container');
+        });
+        document.querySelector('#welcome_continue_button').addEventListener('click', e=>{
+            view.makeElementWithIdDissapear('welcome_container');
+        })
+    };
+
     let setFilterStyleToNoneOfContainerWithid = (toClickId, toUnnblurId, clickableElementId) => {
         document.querySelector(`#${toClickId}`).addEventListener('click', e=>{
             view.unblurElementWithId(toUnnblurId);
@@ -50,6 +60,7 @@ let controller = (function (store,view){
 
 
     let initialiseEventListeners = () => {
+        initialiseWelcomeWindow();
         initialiseNextQuestionButtonListener();
         initialiseSubmitAnswerButtonListener();
         initialiseGetHintButtonListener();

@@ -1,26 +1,21 @@
-let store = (function(questions){
-    let currentQuestionObject = questions.getAllQuestions[0];
+let store = (function(questionStore){
 
     let getNextQuestion = () => {
-        let nextQuestion = questions.getCurrentQuestionAndIncrementCurrentQuestionIndex();
-        currentQuestionObject = {...nextQuestion};
-        // console.log(currentQuestionObject);
-        return nextQuestion;
+        let nextQuestion = questionStore.getCurrentQuestionAndIncrementCurrentQuestionIndex();
+        return {...nextQuestion};
     };
 
     let isInputtedCommandCorrect = command =>{
-        return command===currentQuestionObject.answer;
+        return command===questionStore.getCurrentQuestion().answer;
     };
 
-    let getAllQuestions =  () => questions.getAllQuestions;
-
-    let getCurrentQuestion = () => currentQuestionObject;
+    let getAllQuestions =  () => questionStore.getAllQuestions;
 
     //Api
     return {
         getAllQuestions :getAllQuestions,
         getNextQuestion : getNextQuestion,
-        getCurrentQuestion : getCurrentQuestion,
-        isInputtedCommandCorrect:isInputtedCommandCorrect
+        getCurrentQuestion : questionStore.getCurrentQuestion,
+        isInputtedCommandCorrect : isInputtedCommandCorrect
     };
-})(questions);
+})(questionsStore);
