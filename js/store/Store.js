@@ -1,9 +1,10 @@
-let model = (function(questions){
+let store = (function(questions){
     let currentQuestionObject = questions.getAllQuestions[0];
 
     let getNextQuestion = () => {
         let nextQuestion = questions.getCurrentQuestionAndIncrementCurrentQuestionIndex();
-        currentQuestionObject = nextQuestion;
+        currentQuestionObject = {...nextQuestion};
+        // console.log(currentQuestionObject);
         return nextQuestion;
     };
 
@@ -11,10 +12,15 @@ let model = (function(questions){
         return command===currentQuestionObject.answer;
     };
 
+    let getAllQuestions =  () => questions.getAllQuestions;
+
+    let getCurrentQuestion = () => currentQuestionObject;
+
     //Api
     return {
-        getAllQuestions : questions.getAllQuestions,
+        getAllQuestions :getAllQuestions,
         getNextQuestion : getNextQuestion,
+        getCurrentQuestion : getCurrentQuestion,
         isInputtedCommandCorrect:isInputtedCommandCorrect
     };
 })(questions);

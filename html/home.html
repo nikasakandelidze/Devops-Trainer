@@ -27,6 +27,36 @@
 
     <div class="main_container">
 
+        <div class="modal" id="hint_modal_container" style="display: none;">
+            <div class="exit_cross" id="close_modal_window">
+                X
+            </div>
+
+            <div id="unblur_answer_container" class="unblur_up_text" style="filter: none;">
+                <h1 class="show_text_hint_unblur">Show Answer</h1>
+            </div>
+
+            <div id="answer_hint_container" style="filter: blur(20px);" class="hint_text_container">
+
+
+               Answer:  <h1 id="hint_text"></h1>
+
+            </div>
+
+            <div id="unblur_description_container" class="unblur_up_text">
+                <h1 class="show_text_hint_unblur">Show Description</h1>
+            </div>
+
+            <div id="description_hint_container" style="font-size: x-large; filter: blur(20px);" class="hint_text_container" style="filter: none;">
+
+
+               Description:  <h1 id="hint_description"></h1>
+
+            </div>
+
+
+        </div>
+
         <div class="interactive_container">
 
             <div class="console_container">
@@ -65,8 +95,13 @@
 
             <div id="actual_question"></div>
 
-            <div id="next_question_container">
-                <button id="next_question_button">Next</button>
+            <div style="display: flex" id="next_question_container">
+                <div>
+                    <button class="my_button" id="next_question_button">Next</button>
+                </div>
+                <div id="hint_button_container">
+                    <button class="my_button" id="question_hint_button">Hint</button>
+                </div>
             </div>
             <div id="answer_result">
 
@@ -77,8 +112,8 @@
     </div>
 
 </div>
-<script src="../js/model/questions/Questions.js"></script>
-<script src="../js/model/Model.js"></script>
+<script src="../js/store/questions/Questions.js"></script>
+<script src="../js/store/Store.js"></script>
 <script src="../js/view/View.js"></script>
 <script src="../js/controller/Controller.js"></script>
 <script src="../js/index.js"></script>

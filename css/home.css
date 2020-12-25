@@ -23,14 +23,17 @@
 }
 
 #next_question_button{
-    width: 100px;
-    height: 100px;
     background-color: blue;
     color: azure;
-    border-radius: 10px;
     margin-left: 40%;
     margin-top: 20%;
+}
+
+.my_button{
+    width: 100px;
+    height: 100px;
     transition: ease-in-out 0.3s;
+    border-radius: 10px;
 }
 
 #answer_submit_button{
@@ -47,11 +50,20 @@
 #answer_submit_button:hover{
     transform: scale(1.2);
 }
-#next_question_button:hover{
+.my_button:hover{
     transform: scale(1.2);
     background-color: azure;
     color: blue;
     font-size: x-large;
+}
+
+#question_hint_button{
+    height: 60px;
+}
+
+#hint_button_container{
+    margin-left: 40%;
+    margin-top: 18%;
 }
 
 #console_input{
@@ -84,4 +96,72 @@
     margin-left: 30%;
     margin-top: 10%;
     opacity: 70%;
+}
+
+#hint_modal_container{
+    background-color: azure;
+    width: 700px;
+    height: 500px;
+    position: absolute;
+    margin-left: 17%;
+    border-radius: 20px;
+    border: 1px solid black;
+    margin-top: -2%;
+    transition: ease-in-out 0.4s;
+}
+
+.hint_text_container{
+    width: 90%;
+    height: 45%;
+    background-color: cornflowerblue;
+    margin-left: 6%;
+    border-radius: 20px;
+    font-size: xxx-large;
+    text-align: center;
+    overflow-y: scroll;
+    border: 1px black solid;
+}
+
+.unblur_up_text{
+    width: 30%;
+    height: 25%;
+    background-color: azure;
+    position: absolute;
+    z-index: 1;
+    border-radius: 20px;
+    opacity: 30%;
+    margin-left: 35%;
+    margin-top: 10%;
+}
+
+.unblur_up_text:hover{
+    opacity:100%;
+}
+
+.show_text_hint_unblur{
+    margin-left: 10%;
+}
+
+.exit_cross{
+    background-color: red;
+    color: white;
+    font-size: large;
+    border-radius: 100px;
+    width: 20px;
+    height: 25px;
+    padding-left: 1%;
+    padding-top: 0.3%;
+    margin: 1%;
+    transition: ease-in-out 0.2s;
+}
+
+.exit_cross:hover{
+    background-color: black;
+    color: red;
+    transform: rotate(360deg);
+    cursor: default;
+}
+
+body{
+    font-family: Arimo;
 }
