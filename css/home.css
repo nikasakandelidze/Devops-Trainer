@@ -1,0 +1,226 @@
+
+.interactive_container{
+    height: 370px;
+    display: flex;
+    border: 1px solid black;
+}
+
+.console_container{
+    background-color: aliceblue;
+    width: 29%;
+}
+
+#user_input_container{
+    border: 1px solid black;
+    padding: 2%;
+    padding-left: 5%;
+}
+
+.visualisation_container{
+    background-color: aliceblue;
+    width: 71%;
+}
+
+.data_container{
+    background-color: slategrey;
+    height: 130px;
+    padding: 20px;
+    display: flex;
+    border: 1px solid black;
+}
+
+#next_question_button{
+    background-color: darkolivegreen;
+    color: azure;
+    margin-left: 40%;
+    margin-top: 35%;
+}
+
+.my_button{
+    width: 70px;
+    height: 60px;
+    transition: ease-in-out 0.1s;
+    border-radius: 10px;
+}
+
+#answer_submit_button{
+    width: 100px;
+    height: 35px;
+    background-color: azure;
+    color: black;
+    border-radius: 10px;
+    margin-left: 26%;
+    margin-top: 3%;
+    transition: ease-in-out 0.3s;
+}
+
+#answer_submit_button:hover{
+    transform: scale(1.2);
+}
+.my_button:hover{
+    transform: scale(1.2);
+    background-color: azure;
+    color: blue;
+}
+
+#question_hint_button{
+    height: 60px;
+}
+
+#hint_button_container{
+    margin-left: 40%;
+    margin-top: 18%;
+}
+
+#console_input{
+    width: 300px;
+    height: 300px;
+    align-content: center;
+    background-color: black;
+    color: darkgreen;
+    overflow-wrap: anywhere;
+    overflow-y: auto;
+    font-size: xx-large;
+}
+
+#actual_question{
+    border: 2px solid black;
+    border-radius: 30px;
+    background-color: azure;
+    height: 70px;
+    width: 60%;
+    margin-top: 10px;
+    margin-left: 2%;
+    text-align: center;
+    padding-bottom: 20px;
+    transition: ease-in-out 0.2s;
+    padding-top: 3%;
+    font-size: x-large;
+}
+
+#submit_response{
+    margin-left: 30%;
+    margin-top: 10%;
+    opacity: 70%;
+}
+
+#hint_modal_container{
+    background-color: azure;
+    width: 700px;
+    height: 500px;
+    position: absolute;
+    margin-left: 17%;
+    border-radius: 20px;
+    border: 1px solid black;
+    margin-top: -2%;
+}
+
+.modal{
+    background-color: azure;
+    width: 700px;
+    height: 500px;
+    position: absolute;
+    margin-left: 17%;
+    border-radius: 20px;
+    border: 1px solid black;
+    margin-top: -2%;
+}
+
+.hint_text_container{
+    width: 90%;
+    height: 45%;
+    margin-left: 6%;
+    border-radius: 20px;
+    font-size: xxx-large;
+    text-align: center;
+    overflow-y: scroll;
+    border: 3px black solid;
+}
+
+.unblur_up_text{
+    width: 30%;
+    height: 25%;
+    background-color: azure;
+    position: absolute;
+    z-index: 1;
+    border-radius: 20px;
+    opacity: 70%;
+    margin-left: 35%;
+    margin-top: 10%;
+    border: 1px solid black;
+}
+
+.unblur_up_text:hover{
+    opacity:100%;
+}
+
+.show_text_hint_unblur{
+    margin-left: 10%;
+}
+
+.exit_cross{
+    background-color: red;
+    color: white;
+    font-size: large;
+    border-radius: 100px;
+    width: 20px;
+    height: 25px;
+    padding-left: 1%;
+    padding-top: 0.3%;
+    margin: 1%;
+    transition: ease-in-out 0.2s;
+}
+
+.exit_cross:hover{
+    background-color: black;
+    color: red;
+    transform: rotate(360deg);
+    cursor: default;
+}
+
+#welcome_container{
+    text-align: center;
+    margin-top: 2%;
+}
+
+#side_bar_menu{
+    position: fixed;
+    z-index: 1;
+    height: 100%; /* 100% Full-height */
+    width: 200px;
+    top: 0;
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s;
+}
+
+#sidebar_menu_button{
+    background-color: #111111;
+    width: 4%;
+    height: 35px;
+    margin: 0.3%;
+    margin-left: -2.5%;
+    padding-left: 2%;
+    padding-top: 0.5%;
+    border-radius: 20px;
+    color: white;
+    opacity: 0.5;
+}
+
+#sidebar_menu_button:hover{
+    background-color: dimgray;
+    opacity: 1;
+    transform: translateX(10px);
+}
+
+#close_side_bar{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+body{
+    font-family: Arimo;
+}
