@@ -16,6 +16,7 @@ let controller = (function (store,view){
         document.querySelector("#answer_submit_button").addEventListener('click', e => {
             let userInputtedCommand = document.querySelector("#console_input").value;
             let isInputCorrect = store.isInputtedCommandCorrect(userInputtedCommand);
+            console.log(isInputCorrect)
             isInputCorrect ? view.toggleCorrectAnswerResponse() : view.toggleIncorrectAnswerResponse();
             setTimeout(()=>{
                 isInputCorrect ? view.toggleCorrectAnswerResponse() : view.toggleIncorrectAnswerResponse();
@@ -44,20 +45,30 @@ let controller = (function (store,view){
         view.makeElementWithIdApear('welcome_container');
         document.querySelector('#close_welcome_window').addEventListener('click', e=>{
             view.makeElementWithIdDissapear('welcome_container');
+            view.toggleBlurForBodyElement();
         });
         document.querySelector('#welcome_continue_button').addEventListener('click', e=>{
             view.makeElementWithIdDissapear('welcome_container');
+            view.toggleBlurForBodyElement();
         })
     };
 
     let setFilterStyleToNoneOfContainerWithid = (toClickId, toUnnblurId, clickableElementId) => {
         document.querySelector(`#${toClickId}`).addEventListener('click', e=>{
             view.unblurElementWithId(toUnnblurId);
-            console.log(clickableElementId)
             view.makeElementWithIdDissapear(clickableElementId);
         });
     };
 
+
+    let initialiseSideMenuButton = () => {
+        document.querySelector('#sidebar_menu_button').addEventListener('click', e=>{
+            view.toggleContainerDisplayWithId('side_bar_menu');
+        });
+        document.querySelector('#close_side_bar').addEventListener('click', e=> {
+            view.toggleContainerDisplayWithId('side_bar_menu');
+        });
+    }
 
     let initialiseEventListeners = () => {
         initialiseWelcomeWindow();
@@ -65,7 +76,8 @@ let controller = (function (store,view){
         initialiseSubmitAnswerButtonListener();
         initialiseGetHintButtonListener();
         initialiseUnblurClickableContainers();
-        initialiseHintModalWindowCross()
+        initialiseHintModalWindowCross();
+        initialiseSideMenuButton();
     }
 
     let updateInitialView = () => {

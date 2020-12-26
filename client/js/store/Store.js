@@ -6,6 +6,7 @@ let store = (function(questionStore){
     };
 
     let isInputtedCommandCorrect = command =>{
+        console.log(questionStore.getCurrentQuestion().answer)
         return command===questionStore.getCurrentQuestion().answer;
     };
 

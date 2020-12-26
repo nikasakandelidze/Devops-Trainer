@@ -113,7 +113,6 @@
     border-radius: 20px;
     border: 1px solid black;
     margin-top: -2%;
-    transition: ease-in-out 0.4s;
 }
 
 .modal{
@@ -125,7 +124,6 @@
     border-radius: 20px;
     border: 1px solid black;
     margin-top: -2%;
-    transition: ease-in-out 0.4s;
 }
 
 .hint_text_container{
@@ -182,6 +180,45 @@
 
 #welcome_container{
     text-align: center;
+    margin-top: 2%;
+}
+
+#side_bar_menu{
+    position: fixed;
+    z-index: 1;
+    height: 100%; /* 100% Full-height */
+    width: 200px;
+    top: 0;
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s;
+}
+
+#sidebar_menu_button{
+    background-color: #111111;
+    width: 4%;
+    height: 35px;
+    margin: 0.3%;
+    margin-left: -2.5%;
+    padding-left: 2%;
+    padding-top: 0.5%;
+    border-radius: 20px;
+    color: white;
+    opacity: 0.5;
+}
+
+#sidebar_menu_button:hover{
+    background-color: dimgray;
+    opacity: 1;
+    transform: translateX(10px);
+}
+
+#close_side_bar{
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 body{
