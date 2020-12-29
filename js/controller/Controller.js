@@ -1,7 +1,5 @@
 let controller = (function (store,view){
 
-
-
     let initialiseNextQuestionButtonListener = () => {
         document.querySelector("#next_question_button").addEventListener('click', e => {
             let nextQuestion = store.getNextQuestion();
