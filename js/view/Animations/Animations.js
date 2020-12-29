@@ -1,4 +1,4 @@
-let animations = (function () {
+let animations = (function (welcomePageTyper) {
 
     let scaleElementToMaxWithInterval = (id) => {
         let initialScale = 1;
@@ -14,6 +14,7 @@ let animations = (function () {
     };
 
     return {
-        scaleElementToMaxWithInterval: scaleElementToMaxWithInterval
+        scaleElementToMaxWithInterval: scaleElementToMaxWithInterval,
+        welcomePageTyper : welcomePageTyper.welcomePageTyper
     };
-})();
+})(welcomePageAnimation);
