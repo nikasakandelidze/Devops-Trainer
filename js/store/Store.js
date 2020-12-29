@@ -1,4 +1,4 @@
-let store = (function(questionStore, commitsStore){
+let store = (function(questionStore){
 
     let getNextQuestion = () => {
         let nextQuestion = questionStore.getCurrentQuestionAndIncrementCurrentQuestionIndex();
@@ -9,7 +9,7 @@ let store = (function(questionStore, commitsStore){
         console.log(questionStore.getCurrentQuestion().answer)
         return command===questionStore.getCurrentQuestion().answer;
     };
-
+    
     let getAllQuestions =  () => questionStore.getAllQuestions;
 
     //Api
@@ -17,8 +17,6 @@ let store = (function(questionStore, commitsStore){
         getAllQuestions :getAllQuestions,
         getNextQuestion : getNextQuestion,
         getCurrentQuestion : questionStore.getCurrentQuestion,
-        isInputtedCommandCorrect : isInputtedCommandCorrect,
-        getListOfCommits : commitsStore.getListOfCommits,
-        addNewCommit : commitsStore.addCommit
+        isInputtedCommandCorrect : isInputtedCommandCorrect
     };
-})(questionsStore, commitsStore);
+})(questionsStore);

@@ -1,7 +1,8 @@
 class Commit {
-    constructor(hash,message) {
+    constructor(hash,message,commitDifference) {
         this.hash=hash;
         this.message=message;
+        this.commitDifference=commitDifference;
     }
 
     getMessage(){
@@ -10,5 +11,9 @@ class Commit {
 
     getHash(){
         return this.hash;
+    }
+
+    getCommitDifference(){
+        return this.commitDifference;
     }
 }
