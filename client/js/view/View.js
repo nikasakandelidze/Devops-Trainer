@@ -1,10 +1,6 @@
-let view = (function (animations) {
+let view = (function (animations, commitsView, questionsView, answersView) {
 
-    let updateQuestion = question => document.querySelector('#actual_question').innerHTML = question;
 
-    let toggleCorrectAnswerResponse = () => toggleContainerDisplayWithId('correct_response')
-
-    let toggleIncorrectAnswerResponse = () => toggleContainerDisplayWithId('incorrect_response')
 
     let toggleContainerDisplayWithId = id => {
         let displayStyle = document.querySelector(`#${id}`);
@@ -15,19 +11,6 @@ let view = (function (animations) {
         }
     }
 
-    let toggleCurrentQuestionHint = (hint) => {
-        toggleContainerDisplayWithId('hint_modal_container');
-        let hintInfo = document.querySelector('#hint_text');
-        let hintDescription = document.querySelector('#hint_description');
-        hintInfo.innerHTML = hint.answer;
-        hintDescription.innerHTML = hint.description;
-    }
-
-    let resetAnswerAndDescriptionToBlur = () => {
-        document.querySelector('#answer_hint_container').style.filter = 'blur(20px)';
-        document.querySelector('#description_hint_container').style.filter = 'blur(20px)';
-
-    };
 
     let unblurElementWithId = (toUnnblurId) => {
         document.querySelector(`#${toUnnblurId}`).style.filter = 'none';
@@ -61,11 +44,11 @@ let view = (function (animations) {
 
     //Api
     return {
-        updateQuestion: updateQuestion,
-        toggleCorrectAnswerResponse: toggleCorrectAnswerResponse,
-        toggleIncorrectAnswerResponse: toggleIncorrectAnswerResponse,
-        toggleCurrentQuestionHint: toggleCurrentQuestionHint,
-        resetAnswerAndDescriptionToBlur: resetAnswerAndDescriptionToBlur,
+        updateQuestion: questionsView.updateQuestion,
+        toggleCorrectAnswerResponse: answersView.toggleCorrectAnswerResponse,
+        toggleIncorrectAnswerResponse: answersView.toggleIncorrectAnswerResponse,
+        toggleCurrentQuestionHint: questionsView.toggleCurrentQuestionHint,
+        resetAnswerAndDescriptionToBlur: answersView.resetAnswerAndDescriptionToBlur,
         unblurElementWithId: unblurElementWithId,
         makeElementWithIdApear: makeElementWithIdApear,
         makeElementWithIdDissapear: makeElementWithIdDissapear,
@@ -73,4 +56,4 @@ let view = (function (animations) {
         toggleBlurForElementWithId : toggleBlurForElementWithId,
         toggleContainerDisplayWithId : toggleContainerDisplayWithId
     };
-})(animations);
+})(animations, commitsView , questionsView, answersView);
