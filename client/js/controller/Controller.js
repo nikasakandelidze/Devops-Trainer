@@ -49,6 +49,7 @@ let controller = (function (store,view){
             view.makeElementWithIdDissapear('welcome_container');
             view.toggleBlurForBodyElement();
         })
+        view.welcomePageTyperAnimation();
     };
 
     let setFilterStyleToNoneOfContainerWithid = (toClickId, toUnnblurId, clickableElementId) => {

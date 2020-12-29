@@ -54,6 +54,7 @@ let view = (function (animations, commitsView, questionsView, answersView) {
         makeElementWithIdDissapear: makeElementWithIdDissapear,
         toggleBlurForBodyElement : toggleBlurForBodyElement,
         toggleBlurForElementWithId : toggleBlurForElementWithId,
-        toggleContainerDisplayWithId : toggleContainerDisplayWithId
+        toggleContainerDisplayWithId : toggleContainerDisplayWithId,
+        welcomePageTyperAnimation : animations.welcomePageTyper
     };
-})(animations, commitsView , questionsView, answersView);
+})(animations, branchView , questionsView, answersView);
