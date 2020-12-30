@@ -76,8 +76,11 @@
 
                 <div id="user_input_container">
 
-                    <input id="console_input" type="text">
-
+                    <section id="user_input">
+                        <div id="console_input" class="input" contenteditable="true">
+                            <span contenteditable=false>></span>
+                        </div>
+                    </section>
                     <div>
 
                         <button id="answer_submit_button">Submit</button>
@@ -130,6 +133,7 @@
 
 </div>
 <script src="../js/view/Animations/typer/TyperEffect.js"></script>
+<script src="../js/view/ConsoleView/ConsoleView.js"></script>
 <script src="../js/view/Animations/typer/WelcomePageTyper.js"></script>
 <script src="../js/view/BranchView/BranchView.js"></script>
 <script src="../js/store/questions/question/Question.js"></script>

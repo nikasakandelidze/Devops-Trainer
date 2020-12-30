@@ -12,9 +12,9 @@ let controller = (function (store,view){
 
     let initialiseSubmitAnswerButtonListener = () => {
         document.querySelector("#answer_submit_button").addEventListener('click', e => {
-            let userInputtedCommand = document.querySelector("#console_input").value;
+            let userInputtedCommand = document.querySelector("#console_input").textContent;
+            view.goToNextLineOnConsole();
             let isInputCorrect = store.isInputtedCommandCorrect(userInputtedCommand);
-            console.log(isInputCorrect)
             isInputCorrect ? view.toggleCorrectAnswerResponse() : view.toggleIncorrectAnswerResponse();
             setTimeout(()=>{
                 isInputCorrect ? view.toggleCorrectAnswerResponse() : view.toggleIncorrectAnswerResponse();

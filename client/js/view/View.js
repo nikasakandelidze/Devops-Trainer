@@ -1,4 +1,4 @@
-let view = (function (animations, commitsView, questionsView, answersView) {
+let view = (function (animations, commitsView, questionsView, answersView, consoleView) {
 
 
 
@@ -55,6 +55,7 @@ let view = (function (animations, commitsView, questionsView, answersView) {
         toggleBlurForBodyElement : toggleBlurForBodyElement,
         toggleBlurForElementWithId : toggleBlurForElementWithId,
         toggleContainerDisplayWithId : toggleContainerDisplayWithId,
-        welcomePageTyperAnimation : animations.welcomePageTyper
+        welcomePageTyperAnimation : animations.welcomePageTyper,
+        goToNextLineOnConsole : consoleView.goToNextLineOnConsole
     };
-})(animations, branchView , questionsView, answersView);
+})(animations, branchView , questionsView, answersView, consoleView);
