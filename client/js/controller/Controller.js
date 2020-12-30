@@ -1,12 +1,16 @@
 let controller = (function (store,view){
 
+    let getNextQuestion = () => {
+        store.getNextQuestion();
+        view.updateQuestion(store.getCurrentQuestion().question);
+        view.resetAnswerAndDescriptionToBlur();
+        view.makeElementWithIdApear('unblur_answer_container');
+        view.makeElementWithIdApear('unblur_description_container');
+    }
+
     let initialiseNextQuestionButtonListener = () => {
         document.querySelector("#next_question_button").addEventListener('click', e => {
-            let nextQuestion = store.getNextQuestion();
-            view.updateQuestion(nextQuestion.question);
-            view.resetAnswerAndDescriptionToBlur();
-            view.makeElementWithIdApear('unblur_answer_container');
-            view.makeElementWithIdApear('unblur_description_container');
+           getNextQuestion();
         });
     }
 
@@ -15,7 +19,12 @@ let controller = (function (store,view){
             let userInputtedCommand = document.querySelector("#console_input").textContent;
             view.goToNextLineOnConsole();
             let isInputCorrect = store.isInputtedCommandCorrect(userInputtedCommand);
-            isInputCorrect ? view.toggleCorrectAnswerResponse() : view.toggleIncorrectAnswerResponse();
+            if (isInputCorrect){
+                view.toggleCorrectAnswerResponse();
+                getNextQuestion();
+            } else{
+                view.toggleIncorrectAnswerResponse();
+            }
             setTimeout(()=>{
                 isInputCorrect ? view.toggleCorrectAnswerResponse() : view.toggleIncorrectAnswerResponse();
             },1000)
@@ -80,7 +89,9 @@ let controller = (function (store,view){
     }
 
     let updateInitialView = () => {
-        view.updateQuestion(store.getCurrentQuestion().question)
+        let currentQuestion = store.getCurrentQuestion();
+        console.log(store.getCurrentQuestion())
+        view.updateQuestion(currentQuestion.question)
     }
 
     //Api

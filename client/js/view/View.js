@@ -1,7 +1,5 @@
 let view = (function (animations, commitsView, questionsView, answersView, consoleView) {
 
-
-
     let toggleContainerDisplayWithId = id => {
         let displayStyle = document.querySelector(`#${id}`);
         if (displayStyle.style.display === 'none') {
