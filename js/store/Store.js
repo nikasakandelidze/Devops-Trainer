@@ -1,22 +1,19 @@
-let store = (function(questionStore, sessionStore){
-    
-    let getNextQuestion = () => {
-        let nextQuestion = questionStore.getCurrentQuestionAndIncrementCurrentQuestionIndex();
+class Store {
+    constructor(questionStore, sessionStore) {
+        this.sessionStore = sessionStore;
+        this.questionStore = questionStore;
+    }
+
+    getNextQuestion(){
+        let nextQuestion = this.questionStore.getCurrentQuestionAndIncrementCurrentQuestionIndex();
         return {...nextQuestion};
-    };
+    }
 
-    let isInputtedCommandCorrect = command =>{
-        console.log(questionStore.getCurrentQuestion().answer)
-        return command===questionStore.getCurrentQuestion().answer;
-    };
+    isInputtedCommandCorrect(command){
+        return command===this.questionStore.getCurrentQuestion().answer;
+    }
 
-    let getAllQuestions =  () => questionStore.getAllQuestions;
-
-    //Api
-    return {
-        getAllQuestions :getAllQuestions,
-        getNextQuestion : getNextQuestion,
-        getCurrentQuestion : questionStore.getCurrentQuestion,
-        isInputtedCommandCorrect : isInputtedCommandCorrect
-    };
-})(questionsStore, sessionStore);
+    getCurrentQuestion(){
+        return this.questionStore.getCurrentQuestion();
+    }
+}
