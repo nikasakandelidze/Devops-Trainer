@@ -47,8 +47,9 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
     }
 
     let initialiseSubmitAnswerButtonListener = (isInputCommandCorrect, getNextQuestion) => {
-        document.querySelector("#answer_submit_button").addEventListener('click', e => {
-            let userInputtedCommand = document.querySelector("#console_input").textContent;
+        document.querySelector("#user_input").addEventListener('submit', e => {
+            e.preventDefault();
+            let userInputtedCommand = document.querySelector("#console_input").value;
             view.goToNextLineOnConsole();
             let isInputCorrect = isInputCommandCorrect(userInputtedCommand);
             if (isInputCorrect) {
@@ -57,6 +58,12 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
             } else {
                 view.toggleIncorrectAnswerResponse();
             }
+
+            let newElement = document.createElement('div');
+            newElement.innerHTML = '$ '+userInputtedCommand;
+            document.querySelector('#console_input').value='';
+            document.querySelector('#history_of_inputs').appendChild(newElement);
+            newElement.blur();
             setTimeout(() => {
                 isInputCorrect ? view.toggleCorrectAnswerResponse() : view.toggleIncorrectAnswerResponse();
             }, 1000)
@@ -92,10 +99,12 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         document.querySelector('#close_welcome_window').addEventListener('click', e => {
             makeElementWithIdDissapear('welcome_container');
             toggleBlurForBodyElement();
+            document.querySelector('#console_input').focus();
         });
         document.querySelector('#welcome_continue_button').addEventListener('click', e => {
             makeElementWithIdDissapear('welcome_container');
             toggleBlurForBodyElement();
+            document.querySelector('#console_input').focus();
         })
         animations.welcomePageTyper();
     }
