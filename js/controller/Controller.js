@@ -78,6 +78,20 @@ let controller = (function (store,view){
         });
     }
 
+    let initialiseSideSideMenuFreestyleRouterbutton = () => {
+        view.addOnClickListenerToSideMenuFreeStyleRouter(()=>{
+            document.querySelector('#main_git_trainer_container').style.display='none';
+            document.querySelector('#git_freestyle_container').style.display='block';
+            });
+    }
+
+    let initialiseSideSideMenuTrainerRouterbutton = () => {
+        view.addOnClickListenerToTrainerRouter(()=>{
+            document.querySelector('#main_git_trainer_container').style.display='block';
+            document.querySelector('#git_freestyle_container').style.display='none';
+        });
+    }
+
     let initialiseEventListeners = () => {
         initialiseWelcomeWindow();
         initialiseNextQuestionButtonListener();
@@ -86,6 +100,8 @@ let controller = (function (store,view){
         initialiseUnblurClickableContainers();
         initialiseHintModalWindowCross();
         initialiseSideMenuButton();
+        initialiseSideSideMenuFreestyleRouterbutton();
+        initialiseSideSideMenuTrainerRouterbutton();
     }
 
     let updateInitialView = () => {
