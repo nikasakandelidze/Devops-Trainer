@@ -1,3 +1,10 @@
+let questionStore = new QuestionStore();
+
+let sessionStore = new FreestyleSessionStore();
+
+let basestore = new Store(questionStore, sessionStore);
+
+
 let controller = (function (store,view){
 
     let getNextQuestion = () => {
@@ -106,7 +113,6 @@ let controller = (function (store,view){
 
     let updateInitialView = () => {
         let currentQuestion = store.getCurrentQuestion();
-        console.log(store.getCurrentQuestion())
         view.updateQuestion(currentQuestion.question)
     }
 
@@ -117,4 +123,4 @@ let controller = (function (store,view){
             updateInitialView();
         }
     };
-})(store,view);
+})(basestore,view);
