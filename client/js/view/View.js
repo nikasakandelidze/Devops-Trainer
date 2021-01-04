@@ -40,6 +40,91 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         }
     }
 
+    let initialiseNextQuestionButtonListener = (callbackFn) => {
+        document.querySelector("#next_question_button").addEventListener('click', e => {
+            callbackFn();
+        });
+    }
+
+    let initialiseSubmitAnswerButtonListener = (isInputCommandCorrect, getNextQuestion) => {
+        document.querySelector("#answer_submit_button").addEventListener('click', e => {
+            let userInputtedCommand = document.querySelector("#console_input").textContent;
+            view.goToNextLineOnConsole();
+            let isInputCorrect = isInputCommandCorrect(userInputtedCommand);
+            if (isInputCorrect) {
+                view.toggleCorrectAnswerResponse();
+                getNextQuestion();
+            } else {
+                view.toggleIncorrectAnswerResponse();
+            }
+            setTimeout(() => {
+                isInputCorrect ? view.toggleCorrectAnswerResponse() : view.toggleIncorrectAnswerResponse();
+            }, 1000)
+        });
+    }
+
+    let initialiseGetHintButtonListener = (getCurrentQuestion) => {
+        document.querySelector("#question_hint_button").addEventListener('click', e => {
+            view.toggleCurrentQuestionHint( getCurrentQuestion());
+        });
+    }
+
+    let  initialiseHintModalWindowCross =(getCurrentQuestion) => {
+        document.querySelector('#close_modal_window').addEventListener('click', e => {
+            view.toggleCurrentQuestionHint(getCurrentQuestion());
+        });
+    }
+
+    let setFilterStyleToNoneOfContainerWithid = (toClickId, toUnnblurId, clickableElementId) => {
+        document.querySelector(`#${toClickId}`).addEventListener('click', e => {
+            unblurElementWithId(toUnnblurId);
+            makeElementWithIdDissapear(clickableElementId);
+        });
+    };
+
+    let initialiseUnblurClickableContainers = () => {
+        setFilterStyleToNoneOfContainerWithid('unblur_answer_container', 'answer_hint_container', 'unblur_answer_container');
+        setFilterStyleToNoneOfContainerWithid('unblur_description_container', 'description_hint_container', 'unblur_description_container');
+    }
+
+    let initialiseWelcomeWindow = () => {
+        makeElementWithIdApear('welcome_container');
+        document.querySelector('#close_welcome_window').addEventListener('click', e => {
+            makeElementWithIdDissapear('welcome_container');
+            toggleBlurForBodyElement();
+        });
+        document.querySelector('#welcome_continue_button').addEventListener('click', e => {
+            makeElementWithIdDissapear('welcome_container');
+            toggleBlurForBodyElement();
+        })
+        animations.welcomePageTyper();
+    }
+
+
+    let initialiseSideMenuButton = () => {
+        document.querySelector('#sidebar_menu_button').addEventListener('click', e => {
+            toggleContainerDisplayWithId('side_bar_menu');
+        });
+        document.querySelector('#close_side_bar').addEventListener('click', e => {
+            toggleContainerDisplayWithId('side_bar_menu');
+        });
+    }
+
+    let initialiseSideSideMenuFreestyleRouterbutton = () => {
+        view.addOnClickListenerToSideMenuFreeStyleRouter(() => {
+            document.querySelector('#main_git_trainer_container').style.display = 'none';
+            document.querySelector('#git_freestyle_container').style.display = 'block';
+        });
+    }
+
+    let initialiseSideSideMenuTrainerRouterbutton = () => {
+        view.addOnClickListenerToTrainerRouter(() => {
+            document.querySelector('#main_git_trainer_container').style.display = 'block';
+            document.querySelector('#git_freestyle_container').style.display = 'none';
+        });
+    }
+
+
     //Api
     return {
         updateQuestion: questionsView.updateQuestion,
@@ -56,6 +141,15 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         welcomePageTyperAnimation : animations.welcomePageTyper,
         goToNextLineOnConsole : consoleView.goToNextLineOnConsole,
         addOnClickListenerToSideMenuFreeStyleRouter :  sideMenuView.addOnClickListenerToFreeStyleRouter,
-        addOnClickListenerToTrainerRouter :  sideMenuView.addOnClickListenerToTrainerRouter
+        addOnClickListenerToTrainerRouter :  sideMenuView.addOnClickListenerToTrainerRouter,
+        initialiseNextQuestionButtonListener : initialiseNextQuestionButtonListener,
+        initialiseSubmitAnswerButtonListener : initialiseSubmitAnswerButtonListener,
+        initialiseGetHintButtonListener : initialiseGetHintButtonListener,
+        initialiseHintModalWindowCross : initialiseHintModalWindowCross,
+        initialiseUnblurClickableContainers : initialiseUnblurClickableContainers,
+        initialiseWelcomeWindow : initialiseWelcomeWindow,
+        initialiseSideMenuButton : initialiseSideMenuButton,
+        initialiseSideSideMenuFreestyleRouterbutton : initialiseSideSideMenuFreestyleRouterbutton,
+        initialiseSideSideMenuTrainerRouterbutton : initialiseSideSideMenuTrainerRouterbutton
     };
 })(animations, branchView , questionsView, answersView, consoleView, sideMenuView);
