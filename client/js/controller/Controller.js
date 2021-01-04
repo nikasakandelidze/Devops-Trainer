@@ -1,126 +1,121 @@
-let questionStore = new QuestionStore();
 
-let sessionStore = new FreestyleSessionStore();
+class Controller {
+    constructor(store, view) {
+        this.store = store;
+        this.view = view;
+        this.initialiseEventListeners();
+        this.updateInitialView();
+    }
 
-let basestore = new Store(questionStore, sessionStore);
+    initialiseEventListeners() {
+        this.initialiseWelcomeWindow();
+        this.initialiseNextQuestionButtonListener();
+        this.initialiseSubmitAnswerButtonListener();
+        this.initialiseGetHintButtonListener();
+        this.initialiseUnblurClickableContainers();
+        this.initialiseHintModalWindowCross();
+        this.initialiseSideMenuButton();
+        this.initialiseSideSideMenuFreestyleRouterbutton();
+        this.initialiseSideSideMenuTrainerRouterbutton();
+    }
+
+    updateInitialView () {
+        let currentQuestion = this.store.getCurrentQuestion();
+        this.view.updateQuestion(currentQuestion.question)
+    }
 
 
-let controller = (function (store,view){
-
-    let getNextQuestion = () => {
-        store.getNextQuestion();
-        view.updateQuestion(store.getCurrentQuestion().question);
+    getNextQuestion() {
+        this.store.getNextQuestion();
+        view.updateQuestion(this.store.getCurrentQuestion().question);
         view.resetAnswerAndDescriptionToBlur();
         view.makeElementWithIdApear('unblur_answer_container');
         view.makeElementWithIdApear('unblur_description_container');
     }
 
-    let initialiseNextQuestionButtonListener = () => {
+    initialiseNextQuestionButtonListener() {
         document.querySelector("#next_question_button").addEventListener('click', e => {
-           getNextQuestion();
+            this.getNextQuestion();
         });
     }
 
-    let initialiseSubmitAnswerButtonListener = () => {
+    initialiseSubmitAnswerButtonListener() {
         document.querySelector("#answer_submit_button").addEventListener('click', e => {
             let userInputtedCommand = document.querySelector("#console_input").textContent;
             view.goToNextLineOnConsole();
-            let isInputCorrect = store.isInputtedCommandCorrect(userInputtedCommand);
-            if (isInputCorrect){
+            let isInputCorrect = this.store.isInputtedCommandCorrect(userInputtedCommand);
+            if (isInputCorrect) {
                 view.toggleCorrectAnswerResponse();
-                getNextQuestion();
-            } else{
+                this.getNextQuestion();
+            } else {
                 view.toggleIncorrectAnswerResponse();
             }
-            setTimeout(()=>{
+            setTimeout(() => {
                 isInputCorrect ? view.toggleCorrectAnswerResponse() : view.toggleIncorrectAnswerResponse();
-            },1000)
+            }, 1000)
         });
     }
 
-    let initialiseGetHintButtonListener = () => {
+    initialiseGetHintButtonListener() {
         document.querySelector("#question_hint_button").addEventListener('click', e => {
-            view.toggleCurrentQuestionHint(store.getCurrentQuestion());
+            view.toggleCurrentQuestionHint(this.store.getCurrentQuestion());
         });
     }
 
-    let initialiseUnblurClickableContainers = () => {
-        setFilterStyleToNoneOfContainerWithid('unblur_answer_container', 'answer_hint_container', 'unblur_answer_container');
-        setFilterStyleToNoneOfContainerWithid('unblur_description_container', 'description_hint_container', 'unblur_description_container');
+    initialiseUnblurClickableContainers() {
+        this.setFilterStyleToNoneOfContainerWithid('unblur_answer_container', 'answer_hint_container', 'unblur_answer_container');
+        this.setFilterStyleToNoneOfContainerWithid('unblur_description_container', 'description_hint_container', 'unblur_description_container');
     }
 
-    let initialiseHintModalWindowCross = () => {
+    initialiseHintModalWindowCross() {
         document.querySelector('#close_modal_window').addEventListener('click', e => {
-            view.toggleCurrentQuestionHint(store.getCurrentQuestion());
+            view.toggleCurrentQuestionHint(this.store.getCurrentQuestion());
         });
-    };
+    }
 
-    let initialiseWelcomeWindow = () => {
-        view.makeElementWithIdApear('welcome_container');
-        document.querySelector('#close_welcome_window').addEventListener('click', e=>{
-            view.makeElementWithIdDissapear('welcome_container');
-            view.toggleBlurForBodyElement();
+    initialiseWelcomeWindow() {
+        this.view.makeElementWithIdApear('welcome_container');
+        document.querySelector('#close_welcome_window').addEventListener('click', e => {
+            this.view.makeElementWithIdDissapear('welcome_container');
+            this.view.toggleBlurForBodyElement();
         });
-        document.querySelector('#welcome_continue_button').addEventListener('click', e=>{
-            view.makeElementWithIdDissapear('welcome_container');
-            view.toggleBlurForBodyElement();
+        document.querySelector('#welcome_continue_button').addEventListener('click', e => {
+            this.view.makeElementWithIdDissapear('welcome_container');
+            this.view.toggleBlurForBodyElement();
         })
-        view.welcomePageTyperAnimation();
-    };
+        this.view.welcomePageTyperAnimation();
+    }
 
-    let setFilterStyleToNoneOfContainerWithid = (toClickId, toUnnblurId, clickableElementId) => {
-        document.querySelector(`#${toClickId}`).addEventListener('click', e=>{
-            view.unblurElementWithId(toUnnblurId);
-            view.makeElementWithIdDissapear(clickableElementId);
+    setFilterStyleToNoneOfContainerWithid(toClickId, toUnnblurId, clickableElementId) {
+        document.querySelector(`#${toClickId}`).addEventListener('click', e => {
+            this.view.unblurElementWithId(toUnnblurId);
+            this.view.makeElementWithIdDissapear(clickableElementId);
         });
     };
 
 
-    let initialiseSideMenuButton = () => {
-        document.querySelector('#sidebar_menu_button').addEventListener('click', e=>{
-            view.toggleContainerDisplayWithId('side_bar_menu');
+    initialiseSideMenuButton() {
+        document.querySelector('#sidebar_menu_button').addEventListener('click', e => {
+            this.view.toggleContainerDisplayWithId('side_bar_menu');
         });
-        document.querySelector('#close_side_bar').addEventListener('click', e=> {
-            view.toggleContainerDisplayWithId('side_bar_menu');
-        });
-    }
-
-    let initialiseSideSideMenuFreestyleRouterbutton = () => {
-        view.addOnClickListenerToSideMenuFreeStyleRouter(()=>{
-            document.querySelector('#main_git_trainer_container').style.display='none';
-            document.querySelector('#git_freestyle_container').style.display='block';
-            });
-    }
-
-    let initialiseSideSideMenuTrainerRouterbutton = () => {
-        view.addOnClickListenerToTrainerRouter(()=>{
-            document.querySelector('#main_git_trainer_container').style.display='block';
-            document.querySelector('#git_freestyle_container').style.display='none';
+        document.querySelector('#close_side_bar').addEventListener('click', e => {
+            this.view.toggleContainerDisplayWithId('side_bar_menu');
         });
     }
 
-    let initialiseEventListeners = () => {
-        initialiseWelcomeWindow();
-        initialiseNextQuestionButtonListener();
-        initialiseSubmitAnswerButtonListener();
-        initialiseGetHintButtonListener();
-        initialiseUnblurClickableContainers();
-        initialiseHintModalWindowCross();
-        initialiseSideMenuButton();
-        initialiseSideSideMenuFreestyleRouterbutton();
-        initialiseSideSideMenuTrainerRouterbutton();
+    initialiseSideSideMenuFreestyleRouterbutton() {
+        view.addOnClickListenerToSideMenuFreeStyleRouter(() => {
+            document.querySelector('#main_git_trainer_container').style.display = 'none';
+            document.querySelector('#git_freestyle_container').style.display = 'block';
+        });
     }
 
-    let updateInitialView = () => {
-        let currentQuestion = store.getCurrentQuestion();
-        view.updateQuestion(currentQuestion.question)
+    initialiseSideSideMenuTrainerRouterbutton() {
+        view.addOnClickListenerToTrainerRouter(() => {
+            document.querySelector('#main_git_trainer_container').style.display = 'block';
+            document.querySelector('#git_freestyle_container').style.display = 'none';
+        });
     }
 
-    //Api
-    return {
-        init : () => {
-            initialiseEventListeners();
-            updateInitialView();
-        }
-    };
-})(basestore,view);
+
+}
