@@ -1,4 +1,4 @@
-let questionsStore = (function(){
+let questionsStore = (function () {
 
     let indexOfCurrentQuestion = 0;
 
@@ -23,8 +23,8 @@ let questionsStore = (function(){
 
     //Api
     return {
-        getAllQuestions : [...questions],
-        getCurrentQuestion : getCurrentQuestion,
-        getCurrentQuestionAndIncrementCurrentQuestionIndex : getCurrentQuestionAndIncrementCurrentQuestionIndex
+        getAllQuestions: [...questions],
+        getCurrentQuestion: getCurrentQuestion,
+        getCurrentQuestionAndIncrementCurrentQuestionIndex: getCurrentQuestionAndIncrementCurrentQuestionIndex
     }
 })();

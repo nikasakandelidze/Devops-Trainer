@@ -1,49 +1,49 @@
 
-.interactive_container{
+.interactive_container {
     height: 370px;
     display: flex;
     border: 1px solid black;
 }
 
-.console_container{
+.console_container {
     background-color: aliceblue;
     width: 29%;
 }
 
-#user_input_container{
+#user_input_container {
     border: 1px solid black;
     padding: 2%;
     padding-left: 5%;
 }
 
-.visualisation_container{
+.visualisation_container {
     background-color: aliceblue;
     width: 71%;
 }
 
-.data_container{
-    background-color:  #FF6F61;
+.data_container {
+    background-color: #FF6F61;
     height: 130px;
     padding: 20px;
     display: flex;
-    border: 1px solid  #FF6F61;
+    border: 1px solid #FF6F61;
 }
 
-#next_question_button{
-    background-color:  azure;
+#next_question_button {
+    background-color: azure;
     color: black;
     margin-left: 40%;
     margin-top: 35%;
 }
 
-.my_button{
+.my_button {
     width: 70px;
     height: 60px;
     transition: ease-in-out 0.1s;
     border-radius: 10px;
 }
 
-#answer_submit_button{
+#answer_submit_button {
     width: 100px;
     height: 35px;
     background-color: azure;
@@ -54,15 +54,16 @@
     transition: ease-in-out 0.3s;
 }
 
-#answer_submit_button:hover{
+#answer_submit_button:hover {
     transform: scale(1.2);
 }
-.my_button:hover{
+
+.my_button:hover {
     transform: scale(1.2);
     background-color: azure;
 }
 
-#question_hint_button{
+#question_hint_button {
     height: 60px;
 }
 
@@ -81,12 +82,12 @@ section {
 
 }
 
-#hint_button_container{
+#hint_button_container {
     margin-left: 40%;
     margin-top: 18%;
 }
 
-#user_input{
+#user_input {
     width: 300px;
     height: 300px;
     align-content: center;
@@ -97,7 +98,7 @@ section {
     font-size: xx-large;
 }
 
-#actual_question{
+#actual_question {
     border: 2px solid black;
     border-radius: 30px;
     background-color: azure;
@@ -112,13 +113,13 @@ section {
     font-size: x-large;
 }
 
-#submit_response{
+#submit_response {
     margin-left: 30%;
     margin-top: 10%;
     opacity: 70%;
 }
 
-#hint_modal_container{
+#hint_modal_container {
     background-color: azure;
     width: 700px;
     height: 500px;
@@ -129,7 +130,7 @@ section {
     margin-top: -2%;
 }
 
-.modal{
+.modal {
     background-color: azure;
     width: 700px;
     height: 500px;
@@ -140,7 +141,7 @@ section {
     margin-top: -2%;
 }
 
-.hint_text_container{
+.hint_text_container {
     width: 90%;
     height: 45%;
     margin-left: 6%;
@@ -151,7 +152,7 @@ section {
     border: 3px black solid;
 }
 
-.unblur_up_text{
+.unblur_up_text {
     width: 30%;
     height: 25%;
     background-color: azure;
@@ -164,15 +165,15 @@ section {
     border: 1px solid black;
 }
 
-.unblur_up_text:hover{
-    opacity:100%;
+.unblur_up_text:hover {
+    opacity: 100%;
 }
 
-.show_text_hint_unblur{
+.show_text_hint_unblur {
     margin-left: 10%;
 }
 
-.exit_cross{
+.exit_cross {
     background-color: red;
     color: white;
     font-size: large;
@@ -185,19 +186,20 @@ section {
     transition: ease-in-out 0.2s;
 }
 
-.exit_cross:hover{
+.exit_cross:hover {
     background-color: black;
     color: red;
     transform: rotate(360deg);
     cursor: default;
 }
 
-#welcome_container{
+#welcome_container {
     text-align: center;
     margin-top: 2%;
+    border: 2px solid cornflowerblue;
 }
 
-#side_bar_menu{
+#side_bar_menu {
     position: fixed;
     z-index: 1;
     height: 100%; /* 100% Full-height */
@@ -210,7 +212,7 @@ section {
     transition: 0.5s;
 }
 
-#sidebar_menu_button{
+#sidebar_menu_button {
     background-color: #ff8296;
     width: 6%;
     height: 50px;
@@ -221,18 +223,32 @@ section {
     font-size: x-large;
 }
 
-#sidebar_menu_button:hover{
+#sidebar_menu_button:hover {
     background-color: #ff0048;
     opacity: 1;
     transform: translateX(10px);
 }
 
-#close_side_bar{
+#close_side_bar {
     position: absolute;
     top: 0;
     right: 0;
 }
 
-body{
+#git_freestyle_container{
+    width: 500px;
+    height: 500px;
+    background-color: red;
+}
+
+#freestyle_route:hover{
+    background-color: #ff0048;
+}
+
+#trainer_route:hover{
+    background-color: #ff0048;
+}
+
+body {
     font-family: Arimo;
 }

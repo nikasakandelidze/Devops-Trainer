@@ -13,9 +13,8 @@
     <div class="exit_cross" id="close_side_bar">
         X
     </div>
-    <div><a>First</a></div>
-    <div><a>First</a></div>
-    <div><a>First</a></div>
+    <div id="freestyle_route"><a>FreeStyle</a></div>
+    <div id="trainer_route"><a>Trainer</a></div>
 </div>
 
 <div class="base_container">
@@ -34,12 +33,11 @@
         </div>
     </div>
 
-    <div class="main_container">
+    <div id="sidebar_menu_button">
+        Menu
+    </div>
 
-       <div id="sidebar_menu_button">
-           Menu
-       </div>
-
+    <div id="main_git_trainer_container" class="git_trainer_container" style="display: block;">
         <div  id="hint_modal_container" style="display: none;">
             <div class="exit_cross" id="close_modal_window">
                 X
@@ -131,20 +129,29 @@
 
     </div>
 
+    <div id="git_freestyle_container" style="display: none;">
+
+    </div>
+
 </div>
 <script src="../js/view/Animations/typer/TyperEffect.js"></script>
+<script src="../js/store/sessionStore/session/branches/commits/Commit.js"></script>
+<script src="../js/store/sessionStore/session/branches/commits/CommitsStore.js"></script>
+<script src="../js/store/sessionStore/session/branches/Branch.js"></script>
+<script src="../js/store/sessionStore/session/Session.js"></script>
+<script src="../js/store/sessionStore/SessionStore.js"></script>
+<script src="../js/view/sideMenuView/SideMenuView.js"></script>
 <script src="../js/view/ConsoleView/ConsoleView.js"></script>
 <script src="../js/view/Animations/typer/WelcomePageTyper.js"></script>
 <script src="../js/view/BranchView/BranchView.js"></script>
 <script src="../js/store/questions/question/Question.js"></script>
 <script src="../js/view/QuestionsView/QuestionsView.js"></script>
 <script src="../js/view/AnswersView/AnswersView.js"></script>
-<script src="../js/store/branches/commits/CommitsStore.js"></script>
 <script src="../js/view/Animations/Animations.js"></script>
 <script src="../js/store/questions/QuestionsStore.js"></script>
 <script src="../js/store/Store.js"></script>
 <script src="../js/view/View.js"></script>
 <script src="../js/controller/Controller.js"></script>
-<script src="../js"></script>
+<script src="../js/index.js"></script>
 </body>
 </html>

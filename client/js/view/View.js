@@ -1,4 +1,4 @@
-let view = (function (animations, commitsView, questionsView, answersView, consoleView) {
+let view = (function (animations, commitsView, questionsView, answersView, consoleView, sideMenuView) {
 
     let toggleContainerDisplayWithId = id => {
         let displayStyle = document.querySelector(`#${id}`);
@@ -54,6 +54,8 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         toggleBlurForElementWithId : toggleBlurForElementWithId,
         toggleContainerDisplayWithId : toggleContainerDisplayWithId,
         welcomePageTyperAnimation : animations.welcomePageTyper,
-        goToNextLineOnConsole : consoleView.goToNextLineOnConsole
+        goToNextLineOnConsole : consoleView.goToNextLineOnConsole,
+        addOnClickListenerToSideMenuFreeStyleRouter :  sideMenuView.addOnClickListenerToFreeStyleRouter,
+        addOnClickListenerToTrainerRouter :  sideMenuView.addOnClickListenerToTrainerRouter
     };
-})(animations, branchView , questionsView, answersView, consoleView);
+})(animations, branchView , questionsView, answersView, consoleView, sideMenuView);

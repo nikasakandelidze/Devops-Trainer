@@ -1,5 +1,5 @@
-let store = (function(questionStore){
-
+let store = (function(questionStore, sessionStore){
+    
     let getNextQuestion = () => {
         let nextQuestion = questionStore.getCurrentQuestionAndIncrementCurrentQuestionIndex();
         return {...nextQuestion};
@@ -9,7 +9,7 @@ let store = (function(questionStore){
         console.log(questionStore.getCurrentQuestion().answer)
         return command===questionStore.getCurrentQuestion().answer;
     };
-    
+
     let getAllQuestions =  () => questionStore.getAllQuestions;
 
     //Api
@@ -19,4 +19,4 @@ let store = (function(questionStore){
         getCurrentQuestion : questionStore.getCurrentQuestion,
         isInputtedCommandCorrect : isInputtedCommandCorrect
     };
-})(questionsStore);
+})(questionsStore, sessionStore);
