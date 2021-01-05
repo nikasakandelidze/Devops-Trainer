@@ -133,7 +133,7 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         });
     }
 
-    let initialiseFreeStyleSession = (branchesArray) => {
+    let updateFreeStyleBranchesView = (branchesArray) => {
         let startx=30;
         let starty=50;
         branchesArray.map(branch=>{
@@ -196,7 +196,7 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         initialiseSideMenuButton : initialiseSideMenuButton,
         initialiseSideSideMenuFreestyleRouterbutton : initialiseSideSideMenuFreestyleRouterbutton,
         initialiseSideSideMenuTrainerRouterbutton : initialiseSideSideMenuTrainerRouterbutton,
-        initialiseFreeStyleSession : initialiseFreeStyleSession,
+        updateFreeStyleBranchesView : updateFreeStyleBranchesView,
         updateFreestyleFilesView : updateFreestyleFilesView,
         initialiseFreeStyleConsoleInput : initialiseFreeStyleConsoleInput
     };

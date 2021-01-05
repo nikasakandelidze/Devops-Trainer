@@ -1,9 +1,10 @@
 class TerminalCommands {
 
-    constructor(createNewFileCallback, listAllFilesCallback, gitAddFileWithNameCallback) {
+    constructor(createNewFileCallback, listAllFilesCallback, stageFileWithNameCallback, commitStagedFilesCallback) {
         this.createNewFileCallback = createNewFileCallback;
         this.listAllFilesCallback = listAllFilesCallback;
-        this.gitAddFileWithNameCallback = gitAddFileWithNameCallback;
+        this.gitAddFileWithNameCallback = stageFileWithNameCallback;
+        this.commitStagedFilesCallback = commitStagedFilesCallback;
     }
 
     getAppropriateCommand(inputCommand){
@@ -15,6 +16,9 @@ class TerminalCommands {
         }else  if(inputCommand.includes('git add')){
             let arrayOfFileNamesToGitAdd = inputCommand.split(" ").slice(2);
             this.gitAddFileWithNameCallback(arrayOfFileNamesToGitAdd)
+        }else if (inputCommand.includes('git commit -m ')){
+            let commitMessage= inputCommand.split(" ")[3];
+            this.commitStagedFilesCallback(commitMessage);
         }
     }
 }

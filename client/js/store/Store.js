@@ -32,4 +32,8 @@ class Store {
     stageFileWithName(fileNamesArray){
         this.sessionStore.getSession().getCurrentBranch().stageFileWithName(fileNamesArray);
     }
+
+    commitStagedFiles(commitMessage){
+        this.sessionStore.getSession().getCurrentBranch().commitFiles(commitMessage);
+    }
 }
