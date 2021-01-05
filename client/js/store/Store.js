@@ -28,4 +28,8 @@ class Store {
     getAllFiles(){
         return this.sessionStore.getSession().getCurrentBranch().getFiles();
     }
+
+    stageFileWithName(fileNamesArray){
+        this.sessionStore.getSession().getCurrentBranch().stageFileWithName(fileNamesArray);
+    }
 }

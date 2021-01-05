@@ -13,6 +13,10 @@ class Branch {
         return this.commitsStore.getListOfCommits();
     }
 
+    stageFileWithName(fileNamesArray){
+        this.files.filter(e=>fileNamesArray.includes(e.getFileName())).map(e=>e.setIsStaged(true));
+    }
+
     commitFiles(commitMessage) {
         this.commitsStore.addCommit(new Commit("randomHash", commitMessage, [...this.files]));
         this.files=this.files.filter(e=>!e.getIsStaged())
@@ -23,7 +27,7 @@ class Branch {
     }
 
     getFileContentOfFileWithName(fileName){
-        return this.files.filter(e=>e===fileName).getFileContent();
+        return this.files.filter(e=>e.getFileName()===fileName).getFileContent();
     }
 
     getFiles(){

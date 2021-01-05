@@ -3,6 +3,17 @@ class Controller {
     constructor(store, view) {
         this.store = store;
         this.view = view;
+        this.terminalCommandEngine=new TerminalCommands(
+            (fileName, fileContent)=>{
+                this.store.addNewFile(fileName, fileContent);
+                this.view.updateFreestyleFilesView(this.store.getAllFiles());
+            },
+            ()=>this.store.getAllFiles(),
+            (fileNamesArray) => {
+                this.store.stageFileWithName(fileNamesArray);
+                this.view.updateFreestyleFilesView(this.store.getAllFiles());
+            }
+        );
         this.initialiseEventListeners();
         this.updateInitialView();
     }
@@ -18,7 +29,8 @@ class Controller {
         view.initialiseSideSideMenuFreestyleRouterbutton();
         view.initialiseSideSideMenuTrainerRouterbutton();
         view.initialiseFreeStyleSession(this.store.getBranchesOfSession())
-        view.initialiseFreestyleFilesView(this.store.getAllFiles());
+        view.updateFreestyleFilesView(this.store.getAllFiles());
+        view.initialiseFreeStyleConsoleInput((input)=>this.terminalCommandEngine.getAppropriateCommand(input));
     }
 
     updateInitialView () {
