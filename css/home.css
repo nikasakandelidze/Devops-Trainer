@@ -273,10 +273,6 @@ section {
     width: 100%;
 }
 
-#git_freestyle_container{
-    background-color: black;
-}
-
 #canvas{
     background-color: #ff0048;
     width: 100%;
@@ -286,7 +282,8 @@ section {
 #freestyle_files_listing{
     background-color: lightblue;
     width: 100%;
-    height: 50%;
+    height: 100px;
+    overflow-y: scroll;
 }
 
 body {

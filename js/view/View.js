@@ -151,15 +151,24 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         })
     }
 
-    let initialiseFreestyleFilesView = (filesArray) => {
+    let updateFreestyleFilesView = (filesArray) => {
+        let listItems = document.querySelector('#list_of_files_container');
+        listItems.innerHTML='';
         filesArray.map(file => {
             let newListItem = document.createElement('li');
             newListItem.style.color = file.getIsStaged() ? 'green' : 'red';
             newListItem.innerHTML=file.getFileName();
-            let listItems = document.querySelector('#list_of_files_container');
             listItems.appendChild(newListItem);
         })
     };
+
+    let initialiseFreeStyleConsoleInput = (callbackFn) => {
+        let element = document.querySelector('#user_input_freestyle');
+        element.addEventListener('submit', e=>{
+            e.preventDefault();
+            callbackFn( document.querySelector('#console_input_freestyle').value);
+        })
+    }
 
     //Api
     return {
@@ -188,6 +197,7 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         initialiseSideSideMenuFreestyleRouterbutton : initialiseSideSideMenuFreestyleRouterbutton,
         initialiseSideSideMenuTrainerRouterbutton : initialiseSideSideMenuTrainerRouterbutton,
         initialiseFreeStyleSession : initialiseFreeStyleSession,
-        initialiseFreestyleFilesView : initialiseFreestyleFilesView
+        updateFreestyleFilesView : updateFreestyleFilesView,
+        initialiseFreeStyleConsoleInput : initialiseFreeStyleConsoleInput
     };
 })(animations, branchView , questionsView, answersView, consoleView, sideMenuView);
