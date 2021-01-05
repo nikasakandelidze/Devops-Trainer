@@ -18,7 +18,8 @@ class Branch {
     }
 
     commitFiles(commitMessage) {
-        this.commitsStore.addCommit(new Commit("randomHash", commitMessage, [...this.files]));
+        let stagedFiles = this.files.filter(e=>e.getIsStaged());
+        this.commitsStore.addCommit(new Commit("randomHash", commitMessage, [...stagedFiles]));
         this.files=this.files.filter(e=>!e.getIsStaged())
     }
 

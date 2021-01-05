@@ -12,6 +12,11 @@ class Controller {
             (fileNamesArray) => {
                 this.store.stageFileWithName(fileNamesArray);
                 this.view.updateFreestyleFilesView(this.store.getAllFiles());
+            },
+            (commitMessage) => {
+                this.store.commitStagedFiles(commitMessage);
+                this.view.updateFreestyleFilesView(this.store.getAllFiles());
+                view.updateFreeStyleBranchesView(this.store.getBranchesOfSession());
             }
         );
         this.initialiseEventListeners();
@@ -28,7 +33,7 @@ class Controller {
         view.initialiseSideMenuButton();
         view.initialiseSideSideMenuFreestyleRouterbutton();
         view.initialiseSideSideMenuTrainerRouterbutton();
-        view.initialiseFreeStyleSession(this.store.getBranchesOfSession())
+        view.updateFreeStyleBranchesView(this.store.getBranchesOfSession())
         view.updateFreestyleFilesView(this.store.getAllFiles());
         view.initialiseFreeStyleConsoleInput((input)=>this.terminalCommandEngine.getAppropriateCommand(input));
     }
