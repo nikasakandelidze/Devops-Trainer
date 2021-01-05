@@ -1,4 +1,4 @@
-class Session {
+class FreestyleSession {
     constructor() {
         let currentBranch = new Branch('master');
         this.branches = [currentBranch];

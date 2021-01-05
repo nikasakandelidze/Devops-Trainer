@@ -1,4 +1,4 @@
-class File {
+class GitFile {
     constructor(fileName, fileContent) {
         this.isStaged = false;
         this.name=fileName;

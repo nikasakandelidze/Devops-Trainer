@@ -1,10 +1,10 @@
 class FreestyleSessionStore {
     constructor() {
-        this.session = new Session();
+        this.session = new FreestyleSession();
     }
 
     setNewSession(){
-        this.session = new Session();
+        this.session = new FreestyleSession();
     }
 
     getSession(){

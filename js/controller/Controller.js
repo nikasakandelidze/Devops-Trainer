@@ -17,6 +17,8 @@ class Controller {
         view.initialiseSideMenuButton();
         view.initialiseSideSideMenuFreestyleRouterbutton();
         view.initialiseSideSideMenuTrainerRouterbutton();
+        view.initialiseFreeStyleSession(this.store.getBranchesOfSession())
+        view.initialiseFreestyleFilesView(this.store.getAllFiles());
     }
 
     updateInitialView () {
@@ -31,4 +33,6 @@ class Controller {
         view.makeElementWithIdApear('unblur_answer_container');
         view.makeElementWithIdApear('unblur_description_container');
     }
+
+
 }
