@@ -133,6 +133,33 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         });
     }
 
+    let initialiseFreeStyleSession = (branchesArray) => {
+        let startx=30;
+        let starty=50;
+        branchesArray.map(branch=>{
+            branch.getCommits().map(commit => {
+                let canvasContext = document.querySelector('#canvas').getContext('2d');
+                canvasContext.beginPath();
+                canvasContext.arc(startx, starty, 10, 0, 2 * Math.PI);
+                startx+=40;
+                canvasContext.fillStyle='blue';
+                canvasContext.fill( );
+                canvasContext.fillText('#'+commit.getHash(),startx-50, starty+20);
+            });
+            starty+=10;
+            startx=5;
+        })
+    }
+
+    let initialiseFreestyleFilesView = (filesArray) => {
+        filesArray.map(file => {
+            let newListItem = document.createElement('li');
+            newListItem.style.color = file.getIsStaged() ? 'green' : 'red';
+            newListItem.innerHTML=file.getFileName();
+            let listItems = document.querySelector('#list_of_files_container');
+            listItems.appendChild(newListItem);
+        })
+    };
 
     //Api
     return {
@@ -159,6 +186,8 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         initialiseWelcomeWindow : initialiseWelcomeWindow,
         initialiseSideMenuButton : initialiseSideMenuButton,
         initialiseSideSideMenuFreestyleRouterbutton : initialiseSideSideMenuFreestyleRouterbutton,
-        initialiseSideSideMenuTrainerRouterbutton : initialiseSideSideMenuTrainerRouterbutton
+        initialiseSideSideMenuTrainerRouterbutton : initialiseSideSideMenuTrainerRouterbutton,
+        initialiseFreeStyleSession : initialiseFreeStyleSession,
+        initialiseFreestyleFilesView : initialiseFreestyleFilesView
     };
 })(animations, branchView , questionsView, answersView, consoleView, sideMenuView);

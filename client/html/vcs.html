@@ -73,8 +73,8 @@
             <div class="console_container">
 
                 <div id="user_input_container">
-                    <form id="user_input">
-                        <div id="history_of_inputs">
+                    <form id="user_input" class="user_input">
+                        <div id="history_of_inputs" class="history_of_inputs">
 
                         </div>
                         <input id="console_input" class="input">
@@ -124,15 +124,34 @@
     </div>
 
     <div id="git_freestyle_container" style="display: none;">
+        <div style="display: flex;">
+            <div>
+                <div id="freestyle_input_container">
+                    <form id="user_input_freestyle" class="user_input">
+                        <div class="history_of_inputs">
 
+                        </div>
+                        <input id="console_input_freestyle" class="input">
+                    </form>
+                </div>
+                <div id="freestyle_files_listing">
+                    <ul id="list_of_files_container"></ul>
+                </div>
+            </div>
+
+            <div id="freestyle_visualisation_container">
+                <canvas id="canvas"></canvas>
+            </div>
+        </div>
     </div>
 
 </div>
-<script src="../js/store/sessionStore/session/branches/commits/Commit.js"></script>
-<script src="../js/store/sessionStore/session/branches/commits/CommitsStore.js"></script>
-<script src="../js/store/sessionStore/session/branches/Branch.js"></script>
-<script src="../js/store/sessionStore/session/Session.js"></script>
-<script src="../js/store/sessionStore/FreestyleSessionStore.js"></script>
+<script src="../js/store/freestyleSessionStore/freestyleSession/branches/commits/Commit.js"></script>
+<script src="../js/store/freestyleSessionStore/freestyleSession/branches/commits/CommitsStore.js"></script>
+<script src="../js/store/freestyleSessionStore/freestyleSession/files/GitFile.js"></script>
+<script src="../js/store/freestyleSessionStore/freestyleSession/branches/Branch.js"></script>
+<script src="../js/store/freestyleSessionStore/freestyleSession/FreestyleSession.js"></script>
+<script src="../js/store/freestyleSessionStore/FreestyleSessionStore.js"></script>
 <script src="../js/store/questionStore/question/Question.js"></script>
 <script src="../js/store/questionStore/QuestionStore.js"></script>
 <script src="../js/store/Store.js"></script>

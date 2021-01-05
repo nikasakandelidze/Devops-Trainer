@@ -16,4 +16,16 @@ class Store {
     getCurrentQuestion(){
         return this.questionStore.getCurrentQuestion();
     }
+
+    getBranchesOfSession(){
+        return this.sessionStore.getSession().getBranchesOfSession();
+    }
+
+    addNewFile(fileName, content){
+        this.sessionStore.getSession().getCurrentBranch().addNewFile(fileName,content);
+    }
+
+    getAllFiles(){
+        return this.sessionStore.getSession().getCurrentBranch().getFiles();
+    }
 }

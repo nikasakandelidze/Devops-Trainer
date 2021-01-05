@@ -2,7 +2,7 @@ class Branch {
     constructor(branchName) {
         this.branchName = branchName;
         this.commitsStore = new CommitsStore();
-        this.files=[]
+        this.files=[new GitFile('file1','content')]
     }
 
     getBranchName() {
@@ -19,7 +19,7 @@ class Branch {
     }
 
     addNewFile(fileName, fileContent){
-        this.files.push(new File(fileName, fileContent));
+        this.files.push(new GitFile(fileName, fileContent));
     }
 
     getFileContentOfFileWithName(fileName){
@@ -27,6 +27,6 @@ class Branch {
     }
 
     getFiles(){
-        return this.files;
+        return [...this.files];
     }
 }

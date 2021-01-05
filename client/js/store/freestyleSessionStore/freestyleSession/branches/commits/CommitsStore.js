@@ -1,6 +1,6 @@
 class CommitsStore {
     constructor() {
-        this.commits = [];
+        this.commits = [new Commit('123','asd','as'), new Commit('123','asd','as'), new Commit('123','asd','as')];
     }
 
     addCommit = (newCommit) => {
