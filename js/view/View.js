@@ -9,7 +9,6 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         }
     }
 
-
     let unblurElementWithId = (toUnnblurId) => {
         document.querySelector(`#${toUnnblurId}`).style.filter = 'none';
     }
@@ -50,7 +49,6 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         document.querySelector("#user_input").addEventListener('submit', e => {
             e.preventDefault();
             let userInputtedCommand = document.querySelector("#console_input").value;
-            view.goToNextLineOnConsole();
             let isInputCorrect = isInputCommandCorrect(userInputtedCommand);
             if (isInputCorrect) {
                 view.toggleCorrectAnswerResponse();
@@ -58,16 +56,19 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
             } else {
                 view.toggleIncorrectAnswerResponse();
             }
-
-            let newElement = document.createElement('div');
-            newElement.innerHTML = '$ '+userInputtedCommand;
-            document.querySelector('#console_input').value='';
-            document.querySelector('#history_of_inputs').appendChild(newElement);
-            newElement.blur();
             setTimeout(() => {
                 isInputCorrect ? view.toggleCorrectAnswerResponse() : view.toggleIncorrectAnswerResponse();
             }, 1000)
+            processTerminalInput('console_input', 'history_of_inputs');
         });
+    }
+
+    let processTerminalInput = (inputId, listId) => {
+        let userInputtedCommand = document.querySelector(`#${inputId}`).value;
+        let newElement = document.createElement('div');
+        newElement.innerHTML = '$ '+userInputtedCommand;
+        document.querySelector(`#${inputId}`).value='';
+        document.querySelector(`#${listId}`).appendChild(newElement);
     }
 
     let initialiseGetHintButtonListener = (getCurrentQuestion) => {
@@ -175,7 +176,7 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         element.addEventListener('submit', e=>{
             e.preventDefault();
             callbackFn( document.querySelector('#console_input_freestyle').value);
-            element.blur();
+            processTerminalInput('console_input_freestyle', 'freestyle_history_of_inputs');
         })
         element.focus();
     }

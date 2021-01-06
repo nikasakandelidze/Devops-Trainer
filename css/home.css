@@ -78,23 +78,18 @@ section {
 }
 
 .input {
-    flex: 1;
-
+    color: white;
+    background-color: black;
+    font-size: large;
+    border: 1px green solid;
+    width: 100%;
+    height: 30px;
+    font-weight: bold;
 }
 
 #hint_button_container {
     margin-left: 40%;
     margin-top: 18%;
-}
-
-#console_input {
-    font-weight: bold;
-    background-color: black;
-    border: 0px;
-    color: slategrey;
-    caret-shape: bar;
-    caret-color: #ff0048;
-    font-size: x-large;
 }
 
 .history_of_inputs {
@@ -106,13 +101,9 @@ section {
     border: 0px;
 }
 
-#console_input_freestyle {
-    background-color: black;
-    font-size: large;
-    border: 0;
-    color: slategrey;
-    width: 100%;
-    height: 30px;
+.input::placeholder{
+    color: white;
+    font-size: small;
 }
 
 .user_input {
@@ -336,6 +327,26 @@ section {
 
 .green{
     color: green;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 body {

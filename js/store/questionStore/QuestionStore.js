@@ -5,8 +5,8 @@ class QuestionStore {
         this.indexOfCurrentQuestion = 0;
 
         //These are hardcoded questionsStore. we can fetch from some API these questionsStore later
-        this.questions = [new Question('We want to stage all changed files, what should we do?', 'files add .', 'blablabla'),
-            new Question('We have staged all changes, and want to commit what should we do?', 'files commit -m ""', 'ddddd'),
+        this.questions = [new Question('We want to stage all changed files, what should we do?', 'git add .', 'blablabla'),
+            new Question('We have staged all changes, and want to commit what should we do?', 'git commit -m ""', 'ddddd'),
             new Question('We wewe?', 'a', 'ddddd')];
 
     }
