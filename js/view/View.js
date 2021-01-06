@@ -152,12 +152,12 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
     }
 
     let updateFreestyleFilesView = (filesArray) => {
-        let listItems = document.querySelector('#list_of_files_container');
+        let listItems = document.querySelector('#freestyle_files_listing');
         listItems.innerHTML='';
         filesArray.map(file => {
-            let newListItem = document.createElement('li');
+            let newListItem = document.createElement('div');
             newListItem.style.color = file.getIsStaged() ? 'green' : 'red';
-            newListItem.innerHTML=file.getFileName();
+            newListItem.innerText=file.getFileName();
             listItems.appendChild(newListItem);
         })
     };
@@ -167,7 +167,9 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         element.addEventListener('submit', e=>{
             e.preventDefault();
             callbackFn( document.querySelector('#console_input_freestyle').value);
+            element.blur();
         })
+        element.focus();
     }
 
     //Api

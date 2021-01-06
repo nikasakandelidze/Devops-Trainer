@@ -38,7 +38,7 @@
     </div>
 
     <div id="main_git_trainer_container" class="git_trainer_container" style="display: block;">
-        <div  id="hint_modal_container" style="display: none;">
+        <div id="hint_modal_container" style="display: none;">
             <div class="exit_cross" id="close_modal_window">
                 X
             </div>
@@ -47,10 +47,11 @@
                 <h1 class="show_text_hint_unblur">Show Description</h1>
             </div>
 
-            <div id="description_hint_container" style="font-size: x-large; filter: blur(20px);" class="hint_text_container" style="filter: none;">
+            <div id="description_hint_container" style="font-size: x-large; filter: blur(20px);"
+                 class="hint_text_container" style="filter: none;">
 
 
-                Description:  <h1 id="hint_description"></h1>
+                Description: <h1 id="hint_description"></h1>
 
             </div>
 
@@ -61,7 +62,7 @@
             <div id="answer_hint_container" style="filter: blur(20px);" class="hint_text_container">
 
 
-               Answer:  <h1 id="hint_text"></h1>
+                Answer: <h1 id="hint_text"></h1>
 
             </div>
 
@@ -134,8 +135,16 @@
                         <input id="console_input_freestyle" class="input">
                     </form>
                 </div>
-                <div id="freestyle_files_listing">
-                    <ul id="list_of_files_container"></ul>
+                <div id="files_container">
+                    <div>
+                        <h2 id="files_header">Files</h2>
+                        <h5 id="unstaged_color_container"><span class="red">red</span> - unstaged</h5>
+                        <h5 id="staged_color_container"><span class="green">green</span> - staged</h5>
+                    </div>
+
+                    <div id="freestyle_files_listing">
+
+                    </div>
                 </div>
             </div>
 
