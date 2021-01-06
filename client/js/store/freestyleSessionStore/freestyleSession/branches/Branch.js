@@ -2,7 +2,8 @@ class Branch {
     constructor(branchName) {
         this.branchName = branchName;
         this.commitsStore = new CommitsStore();
-        this.files=[new GitFile('file1','content')]
+        this.files=[];
+        this.randomHashCounter=1;
     }
 
     getBranchName() {
@@ -19,7 +20,7 @@ class Branch {
 
     commitFiles(commitMessage) {
         let stagedFiles = this.files.filter(e=>e.getIsStaged());
-        this.commitsStore.addCommit(new Commit("randomHash", commitMessage, [...stagedFiles]));
+        this.commitsStore.addCommit(new Commit(this.randomHashCounter++, commitMessage, [...stagedFiles]));
         this.files=this.files.filter(e=>!e.getIsStaged())
     }
 

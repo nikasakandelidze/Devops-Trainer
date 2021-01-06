@@ -7,7 +7,7 @@ class TerminalCommands {
         this.commitStagedFilesCallback = commitStagedFilesCallback;
     }
 
-    getAppropriateCommand(inputCommand){
+    processAppropriateCommand(inputCommand){
         if(inputCommand.includes('cat')){
             let array=inputCommand.split(" ");
             this.createNewFileCallback(array[1], '');

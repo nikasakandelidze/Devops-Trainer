@@ -35,7 +35,7 @@ class Controller {
         view.initialiseSideSideMenuTrainerRouterbutton();
         view.updateFreeStyleBranchesView(this.store.getBranchesOfSession())
         view.updateFreestyleFilesView(this.store.getAllFiles());
-        view.initialiseFreeStyleConsoleInput((input)=>this.terminalCommandEngine.getAppropriateCommand(input));
+        view.initialiseFreeStyleConsoleInput((input)=>this.terminalCommandEngine.processAppropriateCommand(input));
     }
 
     updateInitialView () {
