@@ -139,8 +139,7 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         branchesArray.map(branch=>{
             branch.getCommits().map(commit => {
                 let canvasContext = document.querySelector('#canvas').getContext('2d');
-                canvasContext.beginPath();
-                canvasContext.arc(startx, starty, 10, 0, 2 * Math.PI);
+                canvasContext.rect(startx, starty, 20,20);
                 startx+=40;
                 canvasContext.fillStyle='blue';
                 canvasContext.fill( );
@@ -156,8 +155,17 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         listItems.innerHTML='';
         filesArray.map(file => {
             let newListItem = document.createElement('div');
-            newListItem.style.color = file.getIsStaged() ? 'green' : 'red';
+            let image = document.createElement('img');
+            image.width=30;
+            image.height=30;
+            image.src='../../client/statics/file.svg';
+            if(file.getIsStaged()){
+                newListItem.classList.add('staged_container');
+            }else{
+                newListItem.classList.add('unstaged_container');
+            }
             newListItem.innerText=file.getFileName();
+            newListItem.appendChild(image);
             listItems.appendChild(newListItem);
         })
     };
