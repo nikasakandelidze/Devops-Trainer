@@ -314,6 +314,22 @@ section {
     border: 1px red solid;
 }
 
+.staged_container{
+    color: black;
+    margin: 5px;
+    border: 1px solid green;
+    display: inline-block;
+    background-color: green;
+}
+
+.unstaged_container{
+    color: black;
+    margin: 5px;
+    border: 1px solid red;
+    display: inline-block;
+    background-color: red;
+}
+
 .red{
     color: red;
 }
