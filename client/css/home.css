@@ -90,6 +90,7 @@ section {
 #file_content_editor_container{
     border-radius: 50px;
     position: absolute;
+    z-index: 2;
     background-color: slategrey;
     margin-left: 15%;
     margin-top: -2%;
