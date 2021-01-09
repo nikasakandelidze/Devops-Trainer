@@ -66,18 +66,18 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
     let processTerminalInput = (inputId, listId) => {
         let userInputtedCommand = document.querySelector(`#${inputId}`).value;
         let newElement = document.createElement('div');
-        newElement.innerHTML = '$ '+userInputtedCommand;
-        document.querySelector(`#${inputId}`).value='';
+        newElement.innerHTML = '$ ' + userInputtedCommand;
+        document.querySelector(`#${inputId}`).value = '';
         document.querySelector(`#${listId}`).appendChild(newElement);
     }
 
     let initialiseGetHintButtonListener = (getCurrentQuestion) => {
         document.querySelector("#question_hint_button").addEventListener('click', e => {
-            view.toggleCurrentQuestionHint( getCurrentQuestion());
+            view.toggleCurrentQuestionHint(getCurrentQuestion());
         });
     }
 
-    let  initialiseHintModalWindowCross =(getCurrentQuestion) => {
+    let initialiseHintModalWindowCross = (getCurrentQuestion) => {
         document.querySelector('#close_modal_window').addEventListener('click', e => {
             view.toggleCurrentQuestionHint(getCurrentQuestion());
         });
@@ -135,67 +135,122 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
     }
 
     let updateFreeStyleBranchesView = (branchesArray) => {
-        let startx=30;
-        let starty=50;
-        branchesArray.map(branch=>{
+        let parentContainerForBranches = document.querySelector('#freestyle_visualisation_container');
+        parentContainerForBranches.innerHTML='';
+        branchesArray.map(branch => {
+            let  parent = document.createElement('div');
+            parent.innerHTML = '';
+            let parentHeading = document.createElement('h2');
+            parentHeading.innerText = branch.getBranchName();
+            parent.appendChild(parentHeading);
+            parent.classList.add('branch_container')
             branch.getCommits().map(commit => {
-                let canvasContext = document.querySelector('#canvas').getContext('2d');
-                canvasContext.rect(startx, starty, 20,20);
-                startx+=40;
-                canvasContext.fillStyle='blue';
-                canvasContext.fill( );
-                canvasContext.fillText('#'+commit.getHash(),startx-50, starty+20);
+                let isDetailsCardVisible = false;
+                let newCommitElement = document.createElement('div');
+                newCommitElement.classList.add('commit_element')
+                let commitHash = document.createElement('h5');
+                commitHash.innerText = 'Hash: ' + commit.getHash();
+                newCommitElement.appendChild(commitHash)
+                newCommitElement.appendChild(createImageElement());
+                parent.appendChild(newCommitElement);
+                newCommitElement.addEventListener('click', e => {
+                    if (isDetailsCardVisible) {
+                        newCommitElement.removeChild(newCommitElement.lastChild);
+                        isDetailsCardVisible = false;
+                    } else {
+                        let commitDetailsCard = document.createElement('div');
+                        commitDetailsCard.appendChild(createCommitDetailsElement(commit));
+                        commitDetailsCard.classList.add('commit_detail_card');
+                        newCommitElement.appendChild(commitDetailsCard);
+                        isDetailsCardVisible = true;
+                    }
+                })
             });
-            starty+=10;
-            startx=5;
-        })
+            parentContainerForBranches.appendChild(parent);
+        });
     }
+
+    let createImageElement = () => {
+        let newCommitLogo = document.createElement('img');
+        newCommitLogo.src = '../../client/statics/circle.svg';
+        newCommitLogo.width = 60;
+        newCommitLogo.height = 60;
+        return newCommitLogo;
+    }
+
+    let createCommitDetailsElement = (commit) => {
+        let commitDetails = document.createElement('div');
+        let commitHash = document.createElement('h3');
+        commitHash.innerText = 'Hash: ' + commit.getHash();
+        let commitMessage = document.createElement('h5');
+        commitMessage.innerText = "Message: " + commit.getMessage();
+        commitDetails.appendChild(commitHash);
+        commitDetails.appendChild(commitMessage);
+        commitDetails.appendChild(getListOfFileNamesInCommit(commit));
+        return commitDetails;
+    }
+
+    let getListOfFileNamesInCommit = (commit) => {
+        let list = document.createElement('div');
+        let heading = document.createElement('h3');
+        heading.innerText = 'Files';
+        list.appendChild(heading);
+        let listOfFilenames = document.createElement('ul');
+        let fileNames = commit.getFileNamesOfCommit();
+        fileNames.forEach(name => {
+            let listItem = document.createElement('li');
+            listItem.innerText = name;
+            listOfFilenames.appendChild(listItem);
+        });
+        list.appendChild(listOfFilenames)
+        return list;
+    };
 
     let initialiseFreeStyleConsoleInput = (callbackFn) => {
         let element = document.querySelector('#user_input_freestyle');
-        element.addEventListener('submit', e=>{
+        element.addEventListener('submit', e => {
             e.preventDefault();
-            callbackFn( document.querySelector('#console_input_freestyle').value);
+            callbackFn(document.querySelector('#console_input_freestyle').value);
             processTerminalInput('console_input_freestyle', 'freestyle_history_of_inputs');
         })
         element.focus();
     }
 
-    let openfileName='';
+    let openfileName = '';
 
-    let viewFileContent = (fileContent, fileName) =>{
+    let viewFileContent = (fileContent, fileName) => {
         openfileName = fileName;
-        document.querySelector('#file_content_editor').value=fileContent;
-        document.querySelector('#file_content_editor_container').style.display='block';
+        document.querySelector('#file_content_editor').value = fileContent;
+        document.querySelector('#file_content_editor_container').style.display = 'block';
         document.querySelector('#file_content_editor').focus();
     }
 
     let initaliseFileContentEditorSaveButton = (saveFileContentCallback) => {
-        document.querySelector('#file_content_save').addEventListener('click', e=>{
+        document.querySelector('#file_content_save').addEventListener('click', e => {
             saveFileContentCallback(document.querySelector('#file_content_editor').value, openfileName);
-            document.querySelector('#file_content_editor_container').style.display='none';
+            document.querySelector('#file_content_editor_container').style.display = 'none';
         })
     }
 
     let updateFreestyleFilesView = (filesArray, getFileContentCallback) => {
         let listItems = document.querySelector('#freestyle_files_listing');
-        listItems.innerHTML='';
+        listItems.innerHTML = '';
         filesArray.map(file => {
             let newListItem = document.createElement('div');
-            newListItem.addEventListener('click', e=>{
-                viewFileContent( getFileContentCallback(file.getFileName()), file.getFileName());
+            newListItem.addEventListener('click', e => {
+                viewFileContent(getFileContentCallback(file.getFileName()), file.getFileName());
             })
             let image = document.createElement('img');
-            image.width=30;
-            image.height=30;
-            image.src='../../client/statics/file.svg';
-            if(file.getIsStaged()){
+            image.width = 30;
+            image.height = 30;
+            image.src = '../../client/statics/file.svg';
+            if (file.getIsStaged()) {
                 newListItem.classList.add('staged_container');
-            }else{
+            } else {
                 newListItem.classList.add('unstaged_container');
             }
             newListItem.classList.add('file_hover_class')
-            newListItem.innerText=file.getFileName();
+            newListItem.innerText = file.getFileName();
             newListItem.appendChild(image);
             listItems.appendChild(newListItem);
         })
@@ -212,26 +267,26 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         unblurElementWithId: unblurElementWithId,
         makeElementWithIdApear: makeElementWithIdApear,
         makeElementWithIdDissapear: makeElementWithIdDissapear,
-        toggleBlurForBodyElement : toggleBlurForBodyElement,
-        toggleBlurForElementWithId : toggleBlurForElementWithId,
-        toggleContainerDisplayWithId : toggleContainerDisplayWithId,
-        welcomePageTyperAnimation : animations.welcomePageTyper,
-        goToNextLineOnConsole : consoleView.goToNextLineOnConsole,
-        addOnClickListenerToSideMenuFreeStyleRouter :  sideMenuView.addOnClickListenerToFreeStyleRouter,
-        addOnClickListenerToTrainerRouter :  sideMenuView.addOnClickListenerToTrainerRouter,
-        initialiseNextQuestionButtonListener : initialiseNextQuestionButtonListener,
-        initialiseSubmitAnswerButtonListener : initialiseSubmitAnswerButtonListener,
-        initialiseGetHintButtonListener : initialiseGetHintButtonListener,
-        initialiseHintModalWindowCross : initialiseHintModalWindowCross,
-        initialiseUnblurClickableContainers : initialiseUnblurClickableContainers,
-        initialiseWelcomeWindow : initialiseWelcomeWindow,
-        initialiseSideMenuButton : initialiseSideMenuButton,
-        initialiseSideSideMenuFreestyleRouterbutton : initialiseSideSideMenuFreestyleRouterbutton,
-        initialiseSideSideMenuTrainerRouterbutton : initialiseSideSideMenuTrainerRouterbutton,
-        updateFreeStyleBranchesView : updateFreeStyleBranchesView,
-        updateFreestyleFilesView : updateFreestyleFilesView,
-        initialiseFreeStyleConsoleInput : initialiseFreeStyleConsoleInput,
-        viewFileContent : viewFileContent,
-        initaliseFileContentEditorSaveButton : initaliseFileContentEditorSaveButton
+        toggleBlurForBodyElement: toggleBlurForBodyElement,
+        toggleBlurForElementWithId: toggleBlurForElementWithId,
+        toggleContainerDisplayWithId: toggleContainerDisplayWithId,
+        welcomePageTyperAnimation: animations.welcomePageTyper,
+        goToNextLineOnConsole: consoleView.goToNextLineOnConsole,
+        addOnClickListenerToSideMenuFreeStyleRouter: sideMenuView.addOnClickListenerToFreeStyleRouter,
+        addOnClickListenerToTrainerRouter: sideMenuView.addOnClickListenerToTrainerRouter,
+        initialiseNextQuestionButtonListener: initialiseNextQuestionButtonListener,
+        initialiseSubmitAnswerButtonListener: initialiseSubmitAnswerButtonListener,
+        initialiseGetHintButtonListener: initialiseGetHintButtonListener,
+        initialiseHintModalWindowCross: initialiseHintModalWindowCross,
+        initialiseUnblurClickableContainers: initialiseUnblurClickableContainers,
+        initialiseWelcomeWindow: initialiseWelcomeWindow,
+        initialiseSideMenuButton: initialiseSideMenuButton,
+        initialiseSideSideMenuFreestyleRouterbutton: initialiseSideSideMenuFreestyleRouterbutton,
+        initialiseSideSideMenuTrainerRouterbutton: initialiseSideSideMenuTrainerRouterbutton,
+        updateFreeStyleBranchesView: updateFreeStyleBranchesView,
+        updateFreestyleFilesView: updateFreestyleFilesView,
+        initialiseFreeStyleConsoleInput: initialiseFreeStyleConsoleInput,
+        viewFileContent: viewFileContent,
+        initaliseFileContentEditorSaveButton: initaliseFileContentEditorSaveButton
     };
-})(animations, branchView , questionsView, answersView, consoleView, sideMenuView);
+})(animations, branchView, questionsView, answersView, consoleView, sideMenuView);

@@ -16,4 +16,8 @@ class Commit {
     getFilesOfCommit(){
         return this.filesOfCommit;
     }
+
+    getFileNamesOfCommit(){
+        return this.filesOfCommit.map(e=>e.getFileName());
+    }
 }

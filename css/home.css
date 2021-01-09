@@ -97,6 +97,15 @@ section {
     height: 550px;
 }
 
+.menu_item{
+    border: 1px solid black;
+}
+
+.menu_item:hover{
+    background-color: #ff8296;
+    color: lightcyan;
+}
+
 #file_text_area_container{
     margin: 5%;
     width: 100%;
@@ -287,23 +296,51 @@ section {
     right: 0;
 }
 
-#freestyle_route:hover {
-    background-color: #ff0048;
+.commit_detail_card{
+    height: 300px;
+    width: 200px;
+    border: black solid 1px;
+    background-color: #ff8296;
+    padding-left: 1%;
+    padding-top: 1%;
+    border-radius: 20px;
+    position: absolute;
 }
 
-#trainer_route:hover {
-    background-color: #ff0048;
+.branch_container{
+    border: 1px solid black;
+    border-radius: 30px;
+    background-color: whitesmoke;
+    width: 100%;
+    height: 40%;
 }
 
 #freestyle_visualisation_container {
     width: 100%;
     height: 535px;
     border: 2px black solid;
+    display: flex;
 }
 
-#canvas {
-    width: 100%;
-    height: 530px;
+.commit_element{
+    display: inline-block;
+    border-radius: 20px;
+    height: 120px;
+    width: 70px;
+    padding-left: 1%;
+    padding-bottom: 1%;
+    position: relative;
+    /*top: 40%;*/
+    left: 5%;
+}
+
+.commit_element:hover{
+    background-color: #ff8296;
+}
+
+.commit_details:hover{
+    display: block;
+    background-color: #f7ff8e;
 }
 
 #freestyle_input_container {
