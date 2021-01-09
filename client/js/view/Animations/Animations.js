@@ -1,3 +1,6 @@
+
+
+
 let animations = (function (welcomePageTyper) {
 
     let scaleElementToMaxWithInterval = (id) => {

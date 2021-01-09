@@ -1,5 +1,8 @@
-let answersView =(function (){
-    let toggleContainerDisplayWithId = id => {
+class AnswersView {
+    constructor() {
+    }
+
+    toggleContainerDisplayWithId() {
         let displayStyle = document.querySelector(`#${id}`);
         if (displayStyle.style.display === 'none') {
             displayStyle.style.display = 'block';
@@ -8,19 +11,18 @@ let answersView =(function (){
         }
     }
 
-    let toggleCorrectAnswerResponse = () => toggleContainerDisplayWithId('correct_response')
+    toggleCorrectAnswerResponse() {
+        this.toggleContainerDisplayWithId('correct_response');
+    }
 
-    let toggleIncorrectAnswerResponse = () => toggleContainerDisplayWithId('incorrect_response')
+    toggleIncorrectAnswerResponse() {
+        this.toggleContainerDisplayWithId('incorrect_response');
+    }
 
-    let resetAnswerAndDescriptionToBlur = () => {
+
+    resetAnswerAndDescriptionToBlur(){
         document.querySelector('#answer_hint_container').style.filter = 'blur(20px)';
         document.querySelector('#description_hint_container').style.filter = 'blur(20px)';
 
-    };
-
-    return {
-        toggleIncorrectAnswerResponse : toggleIncorrectAnswerResponse,
-        toggleCorrectAnswerResponse : toggleCorrectAnswerResponse,
-        resetAnswerAndDescriptionToBlur : resetAnswerAndDescriptionToBlur
     }
-})();
+}
