@@ -36,4 +36,12 @@ class Store {
     commitStagedFiles(commitMessage){
         this.sessionStore.getSession().getCurrentBranch().commitFiles(commitMessage);
     }
+
+    getContentOfFileWithName(fileName){
+        return this.sessionStore.getSession().getCurrentBranch().getFileContentOfFileWithName(fileName);
+    }
+
+    saveContentToFileWithName(content, fileName){
+        this.sessionStore.getSession().getCurrentBranch().saveContentToFileWithName(content, fileName);
+    }
 }

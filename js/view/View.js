@@ -151,26 +151,6 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         })
     }
 
-    let updateFreestyleFilesView = (filesArray) => {
-        let listItems = document.querySelector('#freestyle_files_listing');
-        listItems.innerHTML='';
-        filesArray.map(file => {
-            let newListItem = document.createElement('div');
-            let image = document.createElement('img');
-            image.width=30;
-            image.height=30;
-            image.src='../../client/statics/file.svg';
-            if(file.getIsStaged()){
-                newListItem.classList.add('staged_container');
-            }else{
-                newListItem.classList.add('unstaged_container');
-            }
-            newListItem.innerText=file.getFileName();
-            newListItem.appendChild(image);
-            listItems.appendChild(newListItem);
-        })
-    };
-
     let initialiseFreeStyleConsoleInput = (callbackFn) => {
         let element = document.querySelector('#user_input_freestyle');
         element.addEventListener('submit', e=>{
@@ -180,6 +160,47 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         })
         element.focus();
     }
+
+    let openfileName='';
+
+    let viewFileContent = (fileContent, fileName) =>{
+        openfileName = fileName;
+        document.querySelector('#file_content_editor').value=fileContent;
+        document.querySelector('#file_content_editor_container').style.display='block';
+        document.querySelector('#file_content_editor').focus();
+    }
+
+    let initaliseFileContentEditorSaveButton = (saveFileContentCallback) => {
+        document.querySelector('#file_content_save').addEventListener('click', e=>{
+            saveFileContentCallback(document.querySelector('#file_content_editor').value, openfileName);
+            document.querySelector('#file_content_editor_container').style.display='none';
+        })
+    }
+
+    let updateFreestyleFilesView = (filesArray, getFileContentCallback) => {
+        let listItems = document.querySelector('#freestyle_files_listing');
+        listItems.innerHTML='';
+        filesArray.map(file => {
+            let newListItem = document.createElement('div');
+            newListItem.addEventListener('click', e=>{
+                viewFileContent( getFileContentCallback(file.getFileName()), file.getFileName());
+            })
+            let image = document.createElement('img');
+            image.width=30;
+            image.height=30;
+            image.src='../../client/statics/file.svg';
+            if(file.getIsStaged()){
+                newListItem.classList.add('staged_container');
+            }else{
+                newListItem.classList.add('unstaged_container');
+            }
+            newListItem.classList.add('file_hover_class')
+            newListItem.innerText=file.getFileName();
+            newListItem.appendChild(image);
+            listItems.appendChild(newListItem);
+        })
+    };
+
 
     //Api
     return {
@@ -209,6 +230,8 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         initialiseSideSideMenuTrainerRouterbutton : initialiseSideSideMenuTrainerRouterbutton,
         updateFreeStyleBranchesView : updateFreeStyleBranchesView,
         updateFreestyleFilesView : updateFreestyleFilesView,
-        initialiseFreeStyleConsoleInput : initialiseFreeStyleConsoleInput
+        initialiseFreeStyleConsoleInput : initialiseFreeStyleConsoleInput,
+        viewFileContent : viewFileContent,
+        initaliseFileContentEditorSaveButton : initaliseFileContentEditorSaveButton
     };
 })(animations, branchView , questionsView, answersView, consoleView, sideMenuView);
