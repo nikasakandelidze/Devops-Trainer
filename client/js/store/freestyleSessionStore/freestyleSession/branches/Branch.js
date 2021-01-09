@@ -29,7 +29,14 @@ class Branch {
     }
 
     getFileContentOfFileWithName(fileName){
-        return this.files.filter(e=>e.getFileName()===fileName).getFileContent();
+        return this.files.filter(e=>{
+            return e.getFileName()===fileName;
+        })[0].getFileContent();
+    }
+
+    saveContentToFileWithName(content, fileName){
+        console.log(content + '  ' + fileName)
+        this.files.filter(e=>e.getFileName()===fileName)[0].setContent(content);
     }
 
     getFiles(){

@@ -13,8 +13,16 @@
     <div class="exit_cross" id="close_side_bar">
         X
     </div>
-    <div id="freestyle_route"><a>FreeStyle</a></div>
-    <div id="trainer_route"><a>Trainer</a></div>
+    <h2>Git</h2>
+    <div class="menu_container">
+        <div id="freestyle_route"><a>FreeStyle</a></div>
+        <div id="trainer_route"><a>Questions</a></div>
+    </div>
+    <h2>Docker</h2>
+    <div class="menu_container">
+        <div ><a>FreeStyle</a></div>
+    </div>
+
 </div>
 
 <div class="base_container">
@@ -125,6 +133,15 @@
     </div>
 
     <div id="git_freestyle_container" style="display: none;">
+
+        <div id="file_content_editor_container" style="display: none; ">
+            <div id="file_text_area_container">
+                <textarea  id="file_content_editor"></textarea>
+                <button id="file_content_save">Save</button>
+            </div>
+
+        </div>
+
         <div style="display: flex;">
             <div>
                 <div id="freestyle_input_container">
@@ -158,7 +175,7 @@
 <script src="../js/TerminalCommands/TerminalCommands.js"></script>
 <script src="../js/store/freestyleSessionStore/freestyleSession/branches/commits/Commit.js"></script>
 <script src="../js/store/freestyleSessionStore/freestyleSession/branches/commits/CommitsStore.js"></script>
-<script src="../js/store/freestyleSessionStore/freestyleSession/files/GitFile.js"></script>
+<script src="../js/store/freestyleSessionStore/freestyleSession/branches/files/GitFile.js"></script>
 <script src="../js/store/freestyleSessionStore/freestyleSession/branches/Branch.js"></script>
 <script src="../js/store/freestyleSessionStore/freestyleSession/FreestyleSession.js"></script>
 <script src="../js/store/freestyleSessionStore/FreestyleSessionStore.js"></script>

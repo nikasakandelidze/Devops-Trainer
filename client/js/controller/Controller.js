@@ -6,17 +6,21 @@ class Controller {
         this.terminalCommandEngine=new TerminalCommands(
             (fileName, fileContent)=>{
                 this.store.addNewFile(fileName, fileContent);
-                this.view.updateFreestyleFilesView(this.store.getAllFiles());
+                this.view.updateFreestyleFilesView(this.store.getAllFiles(), (fileName) => this.store.getContentOfFileWithName(fileName));
             },
             ()=>this.store.getAllFiles(),
             (fileNamesArray) => {
                 this.store.stageFileWithName(fileNamesArray);
-                this.view.updateFreestyleFilesView(this.store.getAllFiles());
+                this.view.updateFreestyleFilesView(this.store.getAllFiles(), (fileName) => this.store.getContentOfFileWithName(fileName));
             },
             (commitMessage) => {
                 this.store.commitStagedFiles(commitMessage);
-                this.view.updateFreestyleFilesView(this.store.getAllFiles());
+                this.view.updateFreestyleFilesView(this.store.getAllFiles(), (fileName) => this.store.getContentOfFileWithName(fileName));
                 view.updateFreeStyleBranchesView(this.store.getBranchesOfSession());
+            },
+            (fileName) => {
+                let content = this.store.getContentOfFileWithName(fileName);
+                this.view.viewFileContent(content, fileName);
             }
         );
         this.initialiseEventListeners();
@@ -34,8 +38,9 @@ class Controller {
         view.initialiseSideSideMenuFreestyleRouterbutton();
         view.initialiseSideSideMenuTrainerRouterbutton();
         view.updateFreeStyleBranchesView(this.store.getBranchesOfSession())
-        view.updateFreestyleFilesView(this.store.getAllFiles());
+        view.updateFreestyleFilesView(this.store.getAllFiles(), (fileName) => this.store.getContentOfFileWithName(fileName));
         view.initialiseFreeStyleConsoleInput((input)=>this.terminalCommandEngine.processAppropriateCommand(input));
+        view.initaliseFileContentEditorSaveButton( (content, fileName) => this.store.saveContentToFileWithName(content, fileName) );
     }
 
     updateInitialView () {

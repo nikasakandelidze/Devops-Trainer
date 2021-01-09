@@ -20,4 +20,8 @@ class GitFile {
     setIsStaged(isStaged){
         this.isStaged=isStaged;
     }
+
+    setContent(content){
+        this.content = content;
+    }
 }
