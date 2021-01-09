@@ -1,9 +1,3 @@
-let branchView = (function () {
-    let visualiseBranch = branch => {
-
-
-    };
-
-
-    return {};
-})();
+class BranchView{
+    constructor() {}
+}

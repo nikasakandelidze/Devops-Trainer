@@ -1,4 +1,12 @@
-let view = (function (animations, commitsView, questionsView, answersView, consoleView, sideMenuView) {
+let answersView = new AnswersView();
+
+let consoleView = new ConsoleView();
+
+let questionsView = new QuestionsView();
+
+let sideMenuView = new SideMenuView();
+
+let view = (function (animations) {
 
     let toggleContainerDisplayWithId = id => {
         let displayStyle = document.querySelector(`#${id}`);
@@ -289,4 +297,4 @@ let view = (function (animations, commitsView, questionsView, answersView, conso
         viewFileContent: viewFileContent,
         initaliseFileContentEditorSaveButton: initaliseFileContentEditorSaveButton
     };
-})(animations, branchView, questionsView, answersView, consoleView, sideMenuView);
+})(animations);

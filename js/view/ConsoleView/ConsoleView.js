@@ -1,10 +1,8 @@
-let consoleView = (function (){
+class ConsoleView{
+    constructor() {}
 
-    let goToNextLineOnConsole = () => {
+    goToNextLineOnConsole(){
         document.querySelector("#console_input").textContent +='\n>' ;
     }
 
-    return {
-        goToNextLineOnConsole : goToNextLineOnConsole
-    };
-})();
+}
