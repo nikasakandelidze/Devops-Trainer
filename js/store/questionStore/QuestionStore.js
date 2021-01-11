@@ -1,23 +1,35 @@
+
+const questionServiceUri='http://localhost:5000/api/questions'
+
 class QuestionStore {
 
     constructor() {
-
         this.indexOfCurrentQuestion = 0;
-
-        //These are hardcoded questionsStore. we can fetch from some API these questionsStore later
-        this.questions = [new Question('We want to stage all changed files, what should we do?', 'git add .', 'blablabla'),
-            new Question('We have staged all changes, and want to commit what should we do?', 'git commit -m ""', 'ddddd'),
-            new Question('We wewe?', 'a', 'ddddd')];
-
+        this.currentQuestion = this._fetchQuestionWithId(this.indexOfCurrentQuestion);
     }
 
-    getCurrentQuestionAndIncrementCurrentQuestionIndex() {
-        let currentQuestion = this.questions[this.indexOfCurrentQuestion];
-        (this.indexOfCurrentQuestion === this.questions.length - 1) ? this.indexOfCurrentQuestion = 0 : this.indexOfCurrentQuestion++;
-        return {...currentQuestion};
+    goToNextQuestion() {
+        this.indexOfCurrentQuestion += 1;
+        this._fetchQuestionWithId(this.indexOfCurrentQuestion)
+            .then(data=>this.currentQuestion=data);
+        return {};
     }
 
     getCurrentQuestion() {
-        return this.questions[this.indexOfCurrentQuestion];
+        return this.currentQuestion;
+    }
+
+    async _fetchQuestionWithId(id) {
+        let response = await fetch(questionServiceUri + `/${id}`,  {
+            mode:'no-cors',
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }});
+        if (response.ok) {
+            return await response.json();
+        }
+        console.log(response.status)
+        return null;
     }
 }
