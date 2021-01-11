@@ -9,6 +9,7 @@ let questions = [new Question(0,'We want to stage all changed files, what should
 
 
 app.get('/api/questions' ,(req , res) => {
+  res.header("Access-Control-Allow-Origin", "*");
   res.send(questions);
 })
 
@@ -18,6 +19,7 @@ app.get('/api/questions/:id', (req, res) => {
   let question = questions.find(e=>{
     return e.getId() == id;
   });
+  res.header("Access-Control-Allow-Origin", "*");
   res.send(question);
 })
 

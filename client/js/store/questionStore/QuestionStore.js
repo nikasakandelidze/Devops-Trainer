@@ -1,17 +1,17 @@
-
-const questionServiceUri='http://localhost:5000/api/questions'
+const questionServiceUri = 'http://localhost:5000/api/questions'
 
 class QuestionStore {
 
     constructor() {
         this.indexOfCurrentQuestion = 0;
-        this.currentQuestion = this._fetchQuestionWithId(this.indexOfCurrentQuestion);
+        this.currentQuestion = this._fetchQuestionWithId(this.indexOfCurrentQuestion)
+            .catch(console.log);
     }
 
     goToNextQuestion() {
         this.indexOfCurrentQuestion += 1;
         this._fetchQuestionWithId(this.indexOfCurrentQuestion)
-            .then(data=>this.currentQuestion=data);
+            .then(data => this.currentQuestion = data);
         return {};
     }
 
@@ -20,16 +20,11 @@ class QuestionStore {
     }
 
     async _fetchQuestionWithId(id) {
-        let response = await fetch(questionServiceUri + `/${id}`,  {
-            mode:'no-cors',
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }});
+        let response = await fetch(questionServiceUri + `/${id}`);
         if (response.ok) {
             return await response.json();
         }
-        console.log(response.status)
+        console.log(response)
         return null;
     }
 }
