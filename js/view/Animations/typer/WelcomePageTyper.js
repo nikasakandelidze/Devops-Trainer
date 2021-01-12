@@ -1,6 +1,4 @@
-let welcomePageAnimation = (function (typerEffect){
-
-    let welcomePageTyper = () => {
+function welcomePageTyper(){
         let welcomeMessage = 'This trainer was created as a final project of web development subject.\n' +
             '            Here\'s the link to : https://github.com/nikasakandelidze/VCS-Trainer \n' +
             '            \n' +
@@ -14,12 +12,6 @@ let welcomePageAnimation = (function (typerEffect){
             '            \n' +
             '            Please press button below.';
 
-        typerEffect.typerEffect(welcomeMessage, 'welcome_text', 35);
-    }
-
-    return {
-        welcomePageTyper : welcomePageTyper
-    }
-
-})(typerEffect);
+    typerEffect(welcomeMessage, 'welcome_text', 35);
+}
 

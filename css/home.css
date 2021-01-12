@@ -282,6 +282,7 @@ section {
     padding-top: 1.2%;
     color: white;
     font-size: x-large;
+    position: relative;
 }
 
 #sidebar_menu_button:hover {
