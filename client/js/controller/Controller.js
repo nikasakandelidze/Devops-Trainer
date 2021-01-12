@@ -43,9 +43,9 @@ class Controller {
         view.initaliseFileContentEditorSaveButton( (content, fileName) => this.store.saveContentToFileWithName(content, fileName) );
     }
 
-    updateInitialView () {
-        this.store.getCurrentQuestion()
-            .then(currentQuestion=>this.view.updateQuestion(currentQuestion.question));
+    async updateInitialView () {
+        let currentQuestion = await this.store.getCurrentQuestion();
+        this.view.updateQuestion(currentQuestion.question);
     }
 
     getNextQuestion() {

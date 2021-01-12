@@ -4,7 +4,7 @@ const port = 5000
 const Question = require('./Question.js')
 
 let questions = [new Question(0,'We want to stage all changed files, what should we do?', 'git add .', 'blablabla'),
-            new Question(1,'We have staged all changes, and want to commit what should we do?', 'git commit -m ', 'ddddd'),
+            new Question(1,'We have staged all changes, and want to commit what should we do?', 'git commit -m', 'ddddd'),
             new Question(2,'We wewe?', 'a', 'ddddd')];
 
 
