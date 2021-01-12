@@ -57,17 +57,20 @@ let view = (function (animations) {
         document.querySelector("#user_input").addEventListener('submit', e => {
             e.preventDefault();
             let userInputtedCommand = document.querySelector("#console_input").value;
-            let isInputCorrect = isInputCommandCorrect(userInputtedCommand);
-            if (isInputCorrect) {
-                view.toggleCorrectAnswerResponse();
-                getNextQuestion();
-            } else {
-                view.toggleIncorrectAnswerResponse();
-            }
-            setTimeout(() => {
-                isInputCorrect ? view.toggleCorrectAnswerResponse() : view.toggleIncorrectAnswerResponse();
-            }, 1000)
-            processTerminalInput('console_input', 'history_of_inputs');
+            isInputCommandCorrect(userInputtedCommand)
+                .then(isInputCorrect => {
+                    if (isInputCorrect) {
+                        view.toggleCorrectAnswerResponse();
+                        getNextQuestion();
+                    } else {
+                        view.toggleIncorrectAnswerResponse();
+                    }
+                    setTimeout(() => {
+                        isInputCorrect ? view.toggleCorrectAnswerResponse() : view.toggleIncorrectAnswerResponse();
+                    }, 1000)
+                    processTerminalInput('console_input', 'history_of_inputs');
+                })
+
         });
     }
 
@@ -81,7 +84,9 @@ let view = (function (animations) {
 
     let initialiseGetHintButtonListener = (getCurrentQuestion) => {
         document.querySelector("#question_hint_button").addEventListener('click', e => {
-            view.toggleCurrentQuestionHint(getCurrentQuestion());
+            getCurrentQuestion().then(e => {
+                view.toggleCurrentQuestionHint(e);
+            });
         });
     }
 
@@ -144,9 +149,9 @@ let view = (function (animations) {
 
     let updateFreeStyleBranchesView = (branchesArray) => {
         let parentContainerForBranches = document.querySelector('#freestyle_visualisation_container');
-        parentContainerForBranches.innerHTML='';
+        parentContainerForBranches.innerHTML = '';
         branchesArray.map(branch => {
-            let  parent = document.createElement('div');
+            let parent = document.createElement('div');
             parent.innerHTML = '';
             let parentHeading = document.createElement('h2');
             parentHeading.innerText = branch.getBranchName();

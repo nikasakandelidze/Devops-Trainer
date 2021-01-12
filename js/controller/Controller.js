@@ -44,16 +44,18 @@ class Controller {
     }
 
     updateInitialView () {
-        let currentQuestion = this.store.getCurrentQuestion();
-        this.view.updateQuestion(currentQuestion.question)
+        this.store.getCurrentQuestion()
+            .then(currentQuestion=>this.view.updateQuestion(currentQuestion.question));
     }
 
     getNextQuestion() {
-        this.store.getNextQuestion();
-        view.updateQuestion(this.store.getCurrentQuestion().question);
-        view.resetAnswerAndDescriptionToBlur();
-        view.makeElementWithIdApear('unblur_answer_container');
-        view.makeElementWithIdApear('unblur_description_container');
+        this.store.getNextQuestion()
+            .then(currentQuestion => {
+                view.updateQuestion(currentQuestion.question);
+                view.resetAnswerAndDescriptionToBlur();
+                view.makeElementWithIdApear('unblur_answer_container');
+                view.makeElementWithIdApear('unblur_description_container');
+            })
     }
 
 

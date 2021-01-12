@@ -5,12 +5,12 @@ class Store {
     }
 
     getNextQuestion(){
-        let nextQuestion = this.questionStore.getCurrentQuestionAndIncrementCurrentQuestionIndex();
-        return {...nextQuestion};
+        return this.questionStore.goToNextQuestion();
     }
 
     isInputtedCommandCorrect(command){
-        return command===this.questionStore.getCurrentQuestion().answer;
+        return this.questionStore.getCurrentQuestion()
+            .then(e=>command===e.answer)
     }
 
     getCurrentQuestion(){

@@ -157,7 +157,6 @@ section {
     color: darkgreen;
     overflow-wrap: anywhere;
     overflow-y: auto;
-    font-size: xx-large;
 }
 
 #actual_question {

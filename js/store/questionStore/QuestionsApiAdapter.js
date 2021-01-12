@@ -1,18 +1,16 @@
 const questionServiceUri = 'http://localhost:5000/api/questions'
 
-class QuestionStore {
+class QuestionsApiAdapter {
 
     constructor() {
         this.indexOfCurrentQuestion = 0;
-        this.currentQuestion = this._fetchQuestionWithId(this.indexOfCurrentQuestion)
-            .catch(console.log);
+        this.currentQuestion=this._fetchQuestionWithId(this.indexOfCurrentQuestion);
     }
 
     goToNextQuestion() {
         this.indexOfCurrentQuestion += 1;
-        this._fetchQuestionWithId(this.indexOfCurrentQuestion)
-            .then(data => this.currentQuestion = data);
-        return {};
+        this.currentQuestion=this._fetchQuestionWithId(this.indexOfCurrentQuestion);
+        return this.currentQuestion;
     }
 
     getCurrentQuestion() {
@@ -24,7 +22,6 @@ class QuestionStore {
         if (response.ok) {
             return await response.json();
         }
-        console.log(response)
-        return null;
+        throw new Error('Cant fetch');
     }
 }
