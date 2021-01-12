@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div id="sidebar_menu_button">
+    <div id="sidebar_menu_button" style="display: none; position: relative; left: 100%">
         Menu
     </div>
 
@@ -81,7 +81,7 @@
 
             <div class="console_container">
 
-                <div id="user_input_container">
+                <div id="user_input_container" style="display: none;">
                     <form id="user_input" class="user_input">
                         <div id="history_of_inputs" class="history_of_inputs">
 
@@ -112,7 +112,7 @@
 
         </div>
 
-        <div class="data_container">
+        <div id="question_data" class="data_container" style="display: none;">
 
             <div id="actual_question"></div>
 
@@ -173,6 +173,9 @@
 
 </div>
 <script src="../js/TerminalCommands/TerminalCommands.js"></script>
+<script src="../js/view/Animations/scaling/ElementScale.js"></script>
+<script src="../js/view/Animations/opacity/AnimateOpacity.js"></script>
+<script src="../js/view/Animations/elementVerticalMovement/VerticalMovement.js"></script>
 <script src="../js/store/freestyleSessionStore/freestyleSession/branches/commits/Commit.js"></script>
 <script src="../js/store/freestyleSessionStore/freestyleSession/branches/commits/CommitsStore.js"></script>
 <script src="../js/store/freestyleSessionStore/freestyleSession/branches/files/GitFile.js"></script>
@@ -189,7 +192,6 @@
 <script src="../js/view/BranchView/BranchView.js"></script>
 <script src="../js/view/QuestionsView/QuestionsView.js"></script>
 <script src="../js/view/AnswersView/AnswersView.js"></script>
-<script src="../js/view/Animations/Animations.js"></script>
 <script src="../js/view/View.js"></script>
 <script src="../js/controller/Controller.js"></script>
 <script src="../js/index.js"></script>

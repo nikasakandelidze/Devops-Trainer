@@ -6,7 +6,7 @@ let questionsView = new QuestionsView();
 
 let sideMenuView = new SideMenuView();
 
-let view = (function (animations) {
+let view = (function () {
 
     let toggleContainerDisplayWithId = id => {
         let displayStyle = document.querySelector(`#${id}`);
@@ -107,26 +107,35 @@ let view = (function (animations) {
 
     let initialiseWelcomeWindow = () => {
         makeElementWithIdApear('welcome_container');
-        document.querySelector('#close_welcome_window').addEventListener('click', e => {
+
+        function extracted() {
             makeElementWithIdDissapear('welcome_container');
             toggleBlurForBodyElement();
             document.querySelector('#console_input').focus();
+            animateLeftPaddingOfElementWithId('sidebar_menu_button',  window.innerWidth, 25, -50, 'block');
+            scaleElement(0,1,0.05,'question_data','flex');
+            scaleElement(0,1,0.02,'user_input_container','block');
+        }
+
+        document.querySelector('#close_welcome_window').addEventListener('click', e => {
+            extracted();
         });
         document.querySelector('#welcome_continue_button').addEventListener('click', e => {
-            makeElementWithIdDissapear('welcome_container');
-            toggleBlurForBodyElement();
-            document.querySelector('#console_input').focus();
+            extracted();
         })
-        animations.welcomePageTyper();
+        welcomePageTyper();
+
     }
 
 
     let initialiseSideMenuButton = () => {
         document.querySelector('#sidebar_menu_button').addEventListener('click', e => {
             toggleContainerDisplayWithId('side_bar_menu');
+            changeOpacity(0, 1, 0.1, 'side_bar_menu');
         });
         document.querySelector('#close_side_bar').addEventListener('click', e => {
             toggleContainerDisplayWithId('side_bar_menu');
+            changeOpacity(1, 0, -0.1, 'side_bar_menu');
         });
     }
 
@@ -280,7 +289,7 @@ let view = (function (animations) {
         toggleBlurForBodyElement: toggleBlurForBodyElement,
         toggleBlurForElementWithId: toggleBlurForElementWithId,
         toggleContainerDisplayWithId: toggleContainerDisplayWithId,
-        welcomePageTyperAnimation: animations.welcomePageTyper,
+        welcomePageTyperAnimation: welcomePageTyper,
         goToNextLineOnConsole: consoleView.goToNextLineOnConsole,
         addOnClickListenerToSideMenuFreeStyleRouter: sideMenuView.addOnClickListenerToFreeStyleRouter,
         addOnClickListenerToTrainerRouter: sideMenuView.addOnClickListenerToTrainerRouter,
@@ -299,4 +308,4 @@ let view = (function (animations) {
         viewFileContent: viewFileContent,
         initaliseFileContentEditorSaveButton: initaliseFileContentEditorSaveButton
     };
-})(animations);
+})();
