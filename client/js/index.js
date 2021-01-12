@@ -1,5 +1,5 @@
 
-let questionStore = new QuestionStore();
+let questionStore = new QuestionsApiAdapter();
 
 let sessionStore = new FreestyleSessionStore();
 

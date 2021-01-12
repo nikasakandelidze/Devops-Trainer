@@ -15,11 +15,11 @@ app.get('/api/questions' ,(req , res) => {
 
 
 app.get('/api/questions/:id', (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
   let id = req.params.id;
   let question = questions.find(e=>{
     return e.getId() == id;
   });
-  res.header("Access-Control-Allow-Origin", "*");
   res.send(question);
 })
 
