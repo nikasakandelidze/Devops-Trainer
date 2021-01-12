@@ -54,23 +54,20 @@ let view = (function (animations) {
     }
 
     let initialiseSubmitAnswerButtonListener = (isInputCommandCorrect, getNextQuestion) => {
-        document.querySelector("#user_input").addEventListener('submit', e => {
+        document.querySelector("#user_input").addEventListener('submit', async e => {
             e.preventDefault();
             let userInputtedCommand = document.querySelector("#console_input").value;
-            isInputCommandCorrect(userInputtedCommand)
-                .then(isInputCorrect => {
-                    if (isInputCorrect) {
-                        view.toggleCorrectAnswerResponse();
-                        getNextQuestion();
-                    } else {
-                        view.toggleIncorrectAnswerResponse();
-                    }
-                    setTimeout(() => {
-                        isInputCorrect ? view.toggleCorrectAnswerResponse() : view.toggleIncorrectAnswerResponse();
-                    }, 1000)
-                    processTerminalInput('console_input', 'history_of_inputs');
-                })
-
+            let isCorrect = await isInputCommandCorrect(userInputtedCommand);
+            if (isCorrect) {
+                view.toggleCorrectAnswerResponse();
+                await getNextQuestion();
+            } else {
+                view.toggleIncorrectAnswerResponse();
+            }
+            setTimeout(() => {
+                isCorrect ? view.toggleCorrectAnswerResponse() : view.toggleIncorrectAnswerResponse();
+            }, 1000)
+            processTerminalInput('console_input', 'history_of_inputs');
         });
     }
 
