@@ -2,7 +2,6 @@
 .interactive_container {
     height: 370px;
     display: flex;
-    border: 1px solid black;
 }
 
 .console_container {
@@ -11,7 +10,9 @@
 }
 
 #user_input_container {
+    position: absolute;
     border: 1px solid black;
+    z-index: 2;
     padding: 2%;
     padding-left: 5%;
 }
@@ -141,7 +142,6 @@ section {
 
 #console_input:focus {
     background-color: black;
-    border: 0px;
 }
 
 .input::placeholder{
@@ -257,7 +257,6 @@ section {
 #welcome_container {
     text-align: center;
     margin-top: 2%;
-    border: 2px solid cornflowerblue;
 }
 
 #side_bar_menu {
