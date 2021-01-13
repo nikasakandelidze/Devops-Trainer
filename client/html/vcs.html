@@ -27,7 +27,7 @@
 
 <div class="base_container">
 
-    <div id="welcome_container" class="modal" style=" filter: unset; display: none;">
+    <div id="welcome_container" class="modal" style="display: none;">
         <div class="exit_cross" id="close_welcome_window">
             X
         </div>
@@ -162,23 +162,25 @@
                         File System
                     </div>
                 </div>
-                <div id="freestyle_user_input" style="display: block">
-                    <form id="user_input_freestyle" class="user_input">
-                        <div id="freestyle_history_of_inputs" class="history_of_inputs">
+                <div id="input_content">
+                    <div id="freestyle_user_input" style="display: block">
+                        <form id="user_input_freestyle" class="user_input">
+                            <div id="freestyle_history_of_inputs" class="history_of_inputs">
 
-                        </div>
-                        <input id="console_input_freestyle" class="input" placeholder="Enter here..">
-                    </form>
-                </div>
-                <div id="files_container" style="display: none">
-                    <div>
-                        <h2 id="files_header">Files</h2>
+                            </div>
+                            <input id="console_input_freestyle" class="input" placeholder="Enter here..">
+                        </form>
+                    </div>
+                    <div id="files_container" style="display: none">
+                        <div>
+                            <h2 id="files_header">Files</h2>
                             <h5 id="unstaged_color_container"><span class="red">red</span> - unstaged</h5>
                             <h5 id="staged_color_container"><span class="green">green</span> - staged</h5>
-                    </div>
+                        </div>
 
-                    <div id="freestyle_files_listing">
+                        <div id="freestyle_files_listing">
 
+                        </div>
                     </div>
                 </div>
             </div>

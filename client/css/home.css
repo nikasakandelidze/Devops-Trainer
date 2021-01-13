@@ -156,6 +156,7 @@ section {
     align-content: center;
     background-color: black;
     color: darkgreen;
+    overflow: scroll;
 }
 
 #actual_question {
@@ -186,8 +187,6 @@ section {
     position: absolute;
     margin-left: 17%;
     border-radius: 20px;
-    border: 1px solid black;
-    margin-top: -2%;
 }
 
 .modal {
@@ -197,7 +196,6 @@ section {
     position: absolute;
     margin-left: 17%;
     border-radius: 20px;
-    border: 1px solid black;
     margin-top: -2%;
 }
 
@@ -370,7 +368,6 @@ section {
     border-radius: 20px;
     padding: 2%;
     width: 300px;
-    overflow: hidden;
 }
 
 #parent_freestyle_container{
@@ -381,8 +378,8 @@ section {
 #freestyle_body{
     height: 100%;
     width: 100%;
-    overflow-y: scroll;
 }
+
 
 #freestyle_files_listing {
     width: 100%;
