@@ -53,6 +53,17 @@ let view = (function () {
         });
     }
 
+    let initialiseFreeStyleConsoleSizeChangerButton = (id, elementId) => {
+        let element = document.querySelector(`#${id}`).addEventListener('click', e=>{
+            let inputContaienr = document.querySelector(`#${elementId}`);
+            if(inputContaienr.style.display==='none'){
+                inputContaienr.style.display='block';
+            }else{
+                inputContaienr.style.display='none';
+            }
+        });
+    };
+
     let initialiseSubmitAnswerButtonListener = (isInputCommandCorrect, getNextQuestion) => {
         document.querySelector("#user_input").addEventListener('submit', async e => {
             e.preventDefault();
@@ -175,6 +186,8 @@ let view = (function () {
             toggleNavelement(filesElement);
             toggleNavelement(inputElement);
         });
+        initialiseFreeStyleConsoleSizeChangerButton('change_window_size_button','user_input');
+        initialiseFreeStyleConsoleSizeChangerButton('change_freestyle_window_size_button','freestyle_body');
     }
 
     let updateFreeStyleBranchesView = (branchesArray) => {
@@ -331,6 +344,6 @@ let view = (function () {
         initialiseFreeStyleConsoleInput: initialiseFreeStyleConsoleInput,
         viewFileContent: viewFileContent,
         initaliseFileContentEditorSaveButton: initaliseFileContentEditorSaveButton,
-        initialiseFreeStyleInputNavigation: initialiseFreeStyleInputNavigation
+        initialiseFreeStyleInputNavigation: initialiseFreeStyleInputNavigation,
     };
 })();

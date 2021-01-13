@@ -6,17 +6,17 @@
 
 .console_container {
     background-color: aliceblue;
-    width: 29%;
+    width: 300px;
 }
 
 #user_input_container {
     text-align: center;
-    background-color: lightgray;
+    background-color: lightblue;
     position: absolute;
-    border: 1px solid black;
     border-radius: 20px;
     z-index: 2;
     padding: 2%;
+    width: 308px;
 }
 
 .visualisation_container {
@@ -83,9 +83,8 @@ section {
 .input {
     color: white;
     background-color: black;
-    font-size: large;
-    width: 300px;
-    height: 30px;
+    width: 280px;
+    height: 20px;
     font-weight: bold;
 }
 
@@ -138,7 +137,8 @@ section {
 }
 
 .history_of_inputs {
-    color: darkgray;
+    color: white;
+    font-weight: bold;
 }
 
 #console_input:focus {
@@ -233,6 +233,29 @@ section {
     margin-left: 10%;
 }
 
+#change_window_size_button{
+    display: inline-block;
+    float: right;
+    transition: ease-in-out 0.1s;
+    margin-left: 1%;
+}
+
+#change_window_size_button:hover{
+    transform: scale(1.2);
+    background-color: cornflowerblue;
+}
+
+#change_freestyle_window_size_button{
+    display: inline-block;
+    float: right;
+    transition: ease-in-out 0.1s;
+    margin-left: 1%;
+}
+
+#change_freestyle_window_size_button:hover{
+    transform: scale(1.2);
+    background-color: cornflowerblue;
+}
 .exit_cross {
     background-color: red;
     color: white;
@@ -241,6 +264,7 @@ section {
     width: 20px;
     height: 25px;
     padding-left: 1%;
+    padding-right: 1%;
     padding-top: 0.3%;
     margin: 1%;
     transition: ease-in-out 0.2s;
@@ -341,12 +365,10 @@ section {
 
 #freestyle_input_container {
     text-align: center;
-    background-color: lightgray;
+    background-color: lightblue;
     position: absolute;
-    border: 1px solid black;
     border-radius: 20px;
     padding: 2%;
-    height: 50%;
     width: 300px;
     overflow: hidden;
 }
@@ -369,6 +391,7 @@ section {
 
 #freestyle_navigation{
     display: flex;
+    width: 100%;
 }
 
 .active_navigation{
@@ -376,13 +399,15 @@ section {
 }
 
 .freestyle_input_nav_element{
-    background-color: #f7ff8e;
-    border: 1px solid black;
+    border-radius: 10px;
+    margin: 1%;
+    color: black;
+    background-color: lightblue;
     width: 50%;
 }
 
 .freestyle_input_nav_element:hover{
-    background-color: #FF6F61;
+    background-color: lightcyan;
 }
 
 #files_container {
