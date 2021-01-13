@@ -83,12 +83,17 @@
 
                 <div id="user_input_container" style="display: none;">
                     Terminal
-                    <form id="user_input" class="user_input">
-                        <div id="history_of_inputs" class="history_of_inputs">
+                    <div  id="change_window_size_button" style="height: 20px; width: 20px; border-radius: 5px;">
+                        <img height="20px" width="20px" src="../statics/minimize.svg">
+                    </div>
+                    <div id="user_input">
+                        <form  class="user_input">
+                            <div id="history_of_inputs" class="history_of_inputs">
 
-                        </div>
-                        <input id="console_input" class="input" placeholder="Enter here..">
-                    </form>
+                            </div>
+                            <input id="console_input" class="input" placeholder="Enter here..">
+                        </form>
+                    </div>
                 </div>
 
             </div>
@@ -145,15 +150,18 @@
 
         <div id="freestyle_input_container">
             Terminal
-            <div id="freestyle_navigation">
-                <div id="console_navigation" class="freestyle_input_nav_element">
-                    Console
-                </div>
-                <div id="file_system_navigation" class="freestyle_input_nav_element">
-                    File System
-                </div>
+            <div  id="change_freestyle_window_size_button" style="height: 20px; width: 20px; border-radius: 5px;">
+                <img height="20px" width="20px" src="../statics/minimize.svg">
             </div>
             <div id="freestyle_body">
+                <div id="freestyle_navigation">
+                    <div id="console_navigation" class="freestyle_input_nav_element">
+                        Console
+                    </div>
+                    <div id="file_system_navigation" class="freestyle_input_nav_element">
+                        File System
+                    </div>
+                </div>
                 <div id="freestyle_user_input" style="display: block">
                     <form id="user_input_freestyle" class="user_input">
                         <div id="freestyle_history_of_inputs" class="history_of_inputs">
