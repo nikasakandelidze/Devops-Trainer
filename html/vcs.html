@@ -20,7 +20,7 @@
     </div>
     <h2>Docker</h2>
     <div class="menu_container">
-        <div ><a>FreeStyle</a></div>
+        <div><a>FreeStyle</a></div>
     </div>
 
 </div>
@@ -41,8 +41,8 @@
         </div>
     </div>
 
-    <div id="sidebar_menu_button" style="display: none; position: relative; left: 100%">
-        Menu
+    <div id="sidebar_menu_button" style=" ">
+        <img style="width: 30px; height: 30px" src="../statics/menu.png">
     </div>
 
     <div id="main_git_trainer_container" class="git_trainer_container" style="display: block;">
@@ -136,15 +136,23 @@
 
         <div id="file_content_editor_container" style="display: none; ">
             <div id="file_text_area_container">
-                <textarea  id="file_content_editor"></textarea>
+                <textarea id="file_content_editor"></textarea>
                 <button id="file_content_save">Save</button>
             </div>
 
         </div>
 
-        <div style="display: flex;">
-            <div>
-                <div id="freestyle_input_container">
+        <div id="freestyle_input_container">
+            <div id="freestyle_navigation">
+                <div id="console_navigation" class="freestyle_input_nav_element">
+                    Console
+                </div>
+                <div id="file_system_navigation" class="freestyle_input_nav_element">
+                    File System
+                </div>
+            </div>
+            <div id="freestyle_body">
+                <div id="freestyle_user_input" style="display: block">
                     <form id="user_input_freestyle" class="user_input">
                         <div id="freestyle_history_of_inputs" class="history_of_inputs">
 
@@ -152,11 +160,15 @@
                         <input id="console_input_freestyle" class="input" placeholder="Enter here..">
                     </form>
                 </div>
-                <div id="files_container">
-                    <div>
+                <div id="files_container" style="display: none">
+                    <div style="width: 100%; height: 100%">
                         <h2 id="files_header">Files</h2>
-                        <h5 id="unstaged_color_container"><span class="red">red</span> - unstaged</h5>
-                        <h5 id="staged_color_container"><span class="green">green</span> - staged</h5>
+                        <div>
+                            <h5 id="unstaged_color_container"><span class="red">red</span> - unstaged</h5>
+                        </div>
+                        <div>
+                            <h5 id="staged_color_container"><span class="green">green</span> - staged</h5>
+                        </div>
                     </div>
 
                     <div id="freestyle_files_listing">
@@ -164,7 +176,9 @@
                     </div>
                 </div>
             </div>
+        </div>
 
+        <div id="parent_freestyle_container" style="display: flex">
             <div id="freestyle_visualisation_container">
 
             </div>
