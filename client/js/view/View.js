@@ -112,9 +112,9 @@ let view = (function () {
             makeElementWithIdDissapear('welcome_container');
             toggleBlurForBodyElement();
             document.querySelector('#console_input').focus();
-            animateLeftPaddingOfElementWithId('sidebar_menu_button',  window.innerWidth, 25, -50, 'block');
-            scaleElement(0,1,0.05,'question_data','flex');
-            scaleElement(0,1,0.02,'user_input_container','block');
+            // animateLeftPaddingOfElementWithId('sidebar_menu_button',  window.innerWidth, 50, -50, 'block');
+            scaleElement(0, 1, 0.05, 'question_data', 'flex');
+            scaleElement(0, 1, 0.02, 'user_input_container', 'block');
         }
 
         document.querySelector('#close_welcome_window').addEventListener('click', e => {
@@ -150,6 +150,30 @@ let view = (function () {
         view.addOnClickListenerToTrainerRouter(() => {
             document.querySelector('#main_git_trainer_container').style.display = 'block';
             document.querySelector('#git_freestyle_container').style.display = 'none';
+        });
+    }
+
+    let initialiseFreeStyleInputNavigation = () => {
+        function toggleNavelement(element) {
+            let currentDisplay = element.style.display;
+            if (currentDisplay === 'block') {
+                element.style.display = 'none'
+            } else {
+                element.style.display = 'block';
+            }
+        }
+
+        let filesElement = document.querySelector('#files_container');
+        let inputElement = document.querySelector('#freestyle_user_input');
+
+        document.querySelector('#console_navigation').addEventListener('click', e => {
+            toggleNavelement(filesElement);
+            toggleNavelement(inputElement);
+        });
+
+        document.querySelector('#file_system_navigation').addEventListener('click', e => {
+            toggleNavelement(filesElement);
+            toggleNavelement(inputElement);
         });
     }
 
@@ -306,6 +330,7 @@ let view = (function () {
         updateFreestyleFilesView: updateFreestyleFilesView,
         initialiseFreeStyleConsoleInput: initialiseFreeStyleConsoleInput,
         viewFileContent: viewFileContent,
-        initaliseFileContentEditorSaveButton: initaliseFileContentEditorSaveButton
+        initaliseFileContentEditorSaveButton: initaliseFileContentEditorSaveButton,
+        initialiseFreeStyleInputNavigation: initialiseFreeStyleInputNavigation
     };
 })();

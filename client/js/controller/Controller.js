@@ -41,6 +41,7 @@ class Controller {
         view.updateFreestyleFilesView(this.store.getAllFiles(), (fileName) => this.store.getContentOfFileWithName(fileName));
         view.initialiseFreeStyleConsoleInput((input)=>this.terminalCommandEngine.processAppropriateCommand(input));
         view.initaliseFileContentEditorSaveButton( (content, fileName) => this.store.saveContentToFileWithName(content, fileName) );
+        view.initialiseFreeStyleInputNavigation();
     }
 
     async updateInitialView () {
