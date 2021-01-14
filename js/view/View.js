@@ -188,5 +188,6 @@ let view = (function () {
         viewFileContent: freeStyleView.viewFileContent,
         initaliseFileContentEditorSaveButton: freeStyleView.initaliseFileContentEditorSaveButton,
         initialiseFreeStyleInputNavigation: freeStyleView.initialiseFreeStyleInputNavigation,
+        listAllFilesInTerminal : freeStyleView.listAllFilesInTerminal
     };
 })();

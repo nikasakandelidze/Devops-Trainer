@@ -21,10 +21,15 @@ class Controller {
             (fileName) => {
                 let content = this.store.getContentOfFileWithName(fileName);
                 this.view.viewFileContent(content, fileName);
+            },
+            () => {
+                let files=this.store.getAllFiles();
+                view.listAllFilesInTerminal(files);
             }
         );
         this.initialiseEventListeners();
-        this.updateInitialView();
+        this.updateInitialView()
+            .then(e=>e);
     }
 
     initialiseEventListeners() {

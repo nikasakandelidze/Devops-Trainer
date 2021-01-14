@@ -1,11 +1,12 @@
 class TerminalCommands {
 
-    constructor(createNewFileCallback, listAllFilesCallback, stageFileWithNameCallback, commitStagedFilesCallback, editFileContentcallback) {
+    constructor(createNewFileCallback, listAllFilesCallback, stageFileWithNameCallback, commitStagedFilesCallback, editFileContentCallback, listFilesInTerminalCallback) {
         this.createNewFileCallback = createNewFileCallback;
         this.listAllFilesCallback = listAllFilesCallback;
         this.gitAddFileWithNameCallback = stageFileWithNameCallback;
         this.commitStagedFilesCallback = commitStagedFilesCallback;
-        this.editFileContentcallback = editFileContentcallback;
+        this.editFileContentcallback = editFileContentCallback;
+        this.listFilesInTerminalCallback = listFilesInTerminalCallback;
     }
 
     processAppropriateCommand(inputCommand){
@@ -23,6 +24,8 @@ class TerminalCommands {
         }else if(inputCommand.includes('vi')){
             let fileName= inputCommand.split(" ")[1];
             this.editFileContentcallback(fileName);
+        }else if(inputCommand==='git status'){
+            this.listFilesInTerminalCallback();
         }
     }
 }
