@@ -118,6 +118,8 @@ let view = (function () {
             // animateLeftPaddingOfElementWithId('sidebar_menu_button',  window.innerWidth, 50, -50, 'block');
             scaleElement(0, 1, 0.05, 'question_data', 'flex');
             scaleElement(0, 1, 0.02, 'user_input_container', 'block');
+            animateLeftPaddingOfElementWithId('sidebar_menu_button',  window.innerWidth, 10, -25, 'block')
+                .then(e=>console.log(e));
         }
 
         document.querySelector('#close_welcome_window').addEventListener('click', e => {
