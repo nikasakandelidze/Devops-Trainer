@@ -6,7 +6,7 @@ class FreeStyleView {
     updateFreestyleFilesView(filesArray, getFileContentCallback) {
         let listItems = document.querySelector('#freestyle_files_listing');
         listItems.innerHTML = '';
-        filesArray.map(file => {
+        Array.from(filesArray).map(file => {
             let newListItem = document.createElement('div');
             newListItem.addEventListener('click', e => {
                 this.viewFileContent(getFileContentCallback(file.getFileName()), file.getFileName());
@@ -80,7 +80,7 @@ class FreeStyleView {
 
         let parentContainerForBranches = document.querySelector('#freestyle_visualisation_container');
         parentContainerForBranches.innerHTML = '';
-        branchesArray.map(branch => {
+        Array.from(branchesArray).map(branch => {
             let parent = document.createElement('div');
             parent.innerHTML = '';
             let parentHeading = document.createElement('h2');

@@ -19,6 +19,7 @@ app.get('/api/questions' ,(req , res) => {
 app.get('/api/questions/:id', (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   let id = req.params.id;
+  if(id>questions.length) id = id%questions.length;
   let question = questions.find(e=>{
     return e.getId() == id;
   });
