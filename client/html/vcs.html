@@ -41,8 +41,11 @@
         </div>
     </div>
 
-    <div id="sidebar_menu_button" style=" ">
+    <div id="sidebar_menu_button" style="display: none;">
         <img style="width: 30px; height: 30px" src="../statics/menu.png">
+        <div id="menu_heading" style="display: none;">
+            <h2>Menu</h2>
+        </div>
     </div>
 
     <div id="main_git_trainer_container" class="git_trainer_container" style="display: block;">
@@ -82,9 +85,11 @@
             <div class="console_container">
 
                 <div id="user_input_container" style="display: none;">
-                    Terminal
-                    <div  id="change_window_size_button" style="height: 20px; width: 20px; border-radius: 5px;">
-                        <img height="20px" width="20px" src="../statics/minimize.svg">
+                    <div  style="border: 1px solid black; border-radius: 10px; padding: 1%; width: 95%;">
+                        <h2 style="margin: 0; display: inline-block;">Terminal</h2>
+                        <div  id="change_window_size_button" style="height: 20px; width: 20px; border-radius: 5px;">
+                            <img height="20px" width="20px" src="../statics/minimize.svg">
+                        </div>
                     </div>
                     <div id="user_input">
                         <form  class="user_input">
@@ -149,7 +154,7 @@
         </div>
 
         <div id="freestyle_input_container">
-            Terminal
+            <h2 style="margin: 0; font-size: x-large; display: inline-block;">Terminal</h2>
             <div  id="change_freestyle_window_size_button" style="height: 20px; width: 20px; border-radius: 5px;">
                 <img height="20px" width="20px" src="../statics/minimize.svg">
             </div>
