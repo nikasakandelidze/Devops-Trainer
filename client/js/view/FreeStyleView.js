@@ -3,7 +3,7 @@ class FreeStyleView {
         this.openfileName = '';
     }
 
-    updateFreestyleFilesView(filesArray, getFileContentCallback){
+    updateFreestyleFilesView(filesArray, getFileContentCallback) {
         let listItems = document.querySelector('#freestyle_files_listing');
         listItems.innerHTML = '';
         filesArray.map(file => {
@@ -28,33 +28,39 @@ class FreeStyleView {
     };
 
 
-    viewFileContent(fileContent, fileName){
+    viewFileContent(fileContent, fileName) {
         this.openfileName = fileName;
         document.querySelector('#file_content_editor').value = fileContent;
         document.querySelector('#file_content_editor_container').style.display = 'block';
         document.querySelector('#file_content_editor').focus();
     }
 
-    initaliseFileContentEditorSaveButton(saveFileContentCallback){
+    initaliseFileContentEditorSaveButton(saveFileContentCallback) {
         document.querySelector('#file_content_save').addEventListener('click', e => {
             saveFileContentCallback(document.querySelector('#file_content_editor').value, this.openfileName);
             document.querySelector('#file_content_editor_container').style.display = 'none';
         })
     }
 
-
-    initialiseFreeStyleConsoleInput(callbackFn){
+    initialiseFreeStyleConsoleInput(callbackFn) {
+        function processTerminalInput(inputId, listId) {
+            let userInputtedCommand = document.querySelector(`#${inputId}`).value;
+            let newElement = document.createElement('div');
+            newElement.innerHTML = '$ ' + userInputtedCommand;
+            document.querySelector(`#${inputId}`).value = '';
+            document.querySelector(`#${listId}`).appendChild(newElement);
+        }
         let element = document.querySelector('#user_input_freestyle');
         element.addEventListener('submit', e => {
             e.preventDefault();
             callbackFn(document.querySelector('#console_input_freestyle').value);
-            view.processTerminalInput('console_input_freestyle', 'freestyle_history_of_inputs');
+            processTerminalInput('console_input_freestyle', 'freestyle_history_of_inputs');
         })
         element.focus();
     }
 
 
-    getListOfFileNamesInCommit(commit){
+    getListOfFileNamesInCommit(commit) {
         let list = document.createElement('div');
         let heading = document.createElement('h3');
         heading.innerText = 'Files';
@@ -71,7 +77,7 @@ class FreeStyleView {
     };
 
 
-    updateFreeStyleBranchesView(branchesArray){
+    updateFreeStyleBranchesView(branchesArray) {
         let parentContainerForBranches = document.querySelector('#freestyle_visualisation_container');
         parentContainerForBranches.innerHTML = '';
         branchesArray.map(branch => {
@@ -108,7 +114,7 @@ class FreeStyleView {
     }
 
 
-    createCommitDetailsElement(commit){
+    createCommitDetailsElement(commit) {
         let commitDetails = document.createElement('div');
         let commitHash = document.createElement('h3');
         commitHash.innerText = 'Hash: ' + commit.getHash();
@@ -120,7 +126,7 @@ class FreeStyleView {
         return commitDetails;
     }
 
-    createImageElement(){
+    createImageElement() {
         let newCommitLogo = document.createElement('img');
         newCommitLogo.src = '../../client/statics/circle.svg';
         newCommitLogo.width = 60;
@@ -128,18 +134,18 @@ class FreeStyleView {
         return newCommitLogo;
     }
 
-    initialiseFreeStyleConsoleSizeChangerButton(id, elementId){
-        let element = document.querySelector(`#${id}`).addEventListener('click', e=>{
-            let inputContaienr = document.querySelector(`#${elementId}`);
-            if(inputContaienr.style.display==='none'){
-                inputContaienr.style.display='block';
-            }else{
-                inputContaienr.style.display='none';
-            }
-        });
-    };
+    initialiseFreeStyleInputNavigation() {
+        function initialiseFreeStyleConsoleSizeChangerButton(id, elementId) {
+            document.querySelector(`#${id}`).addEventListener('click', e => {
+                let inputContaienr = document.querySelector(`#${elementId}`);
+                if (inputContaienr.style.display === 'none') {
+                    inputContaienr.style.display = 'block';
+                } else {
+                    inputContaienr.style.display = 'none';
+                }
+            });
+        }
 
-    initialiseFreeStyleInputNavigation(){
         function toggleNavelement(element) {
             let currentDisplay = element.style.display;
             if (currentDisplay === 'block') {
@@ -161,7 +167,25 @@ class FreeStyleView {
             toggleNavelement(filesElement);
             toggleNavelement(inputElement);
         });
-        this.initialiseFreeStyleConsoleSizeChangerButton('change_window_size_button','user_input');
-        this.initialiseFreeStyleConsoleSizeChangerButton('change_freestyle_window_size_button','freestyle_body');
+        initialiseFreeStyleConsoleSizeChangerButton('change_window_size_button', 'user_input');
+        initialiseFreeStyleConsoleSizeChangerButton('change_freestyle_window_size_button', 'freestyle_body');
     }
+
+    listAllFilesInTerminal(files) {
+        let parentElement = document.createElement('div');
+        parentElement.classList.add('flex_container');
+        files.forEach(file => {
+            let newElement = document.createElement('span');
+            newElement.innerHTML = file.getFileName();
+            if(file.getIsStaged()){
+                newElement.classList.add('green','horizontal_margin');
+            }else{
+                newElement.classList.add('red','horizontal_margin');
+            }
+            parentElement.appendChild(newElement);
+        });
+        document.querySelector('#console_input_freestyle').value = '';
+        document.querySelector('#freestyle_history_of_inputs').appendChild(parentElement);
+    }
+
 }
