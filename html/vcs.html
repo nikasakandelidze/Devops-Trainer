@@ -25,6 +25,10 @@
 
 </div>
 
+<div id="all_questions_modal" style=" display: none;">
+    <h3 style="text-align: center">All questions</h3>
+</div>
+
 <div class="base_container">
 
     <div id="welcome_container" class="modal" style="display: none;">
@@ -123,24 +127,24 @@
 
         </div>
 
-        <div id="question_data" class="data_container" style="display: none;">
+        <div style="display: flex">
+            <div id="question_data" class="data_container" style="display: none;">
 
-            <div id="actual_question"></div>
+                <div id="actual_question"></div>
 
-            <div style="display: flex" id="next_question_container">
-                <div>
-                    <button class="my_button" id="next_question_button">Next</button>
-                </div>
-                <div id="hint_button_container">
-                    <button class="my_button" id="question_hint_button">Hint</button>
+                <div style="display: flex" id="next_question_container">
+                    <div>
+                        <button class="my_button" id="next_question_button">Next</button>
+                    </div>
+                    <div id="hint_button_container">
+                        <button class="my_button" id="question_hint_button">Hint</button>
+                    </div>
                 </div>
             </div>
-            <div id="answer_result">
-
+            <div id="all_questions_toggler">
+                <button class="my_button" id="all_questions_button">All questions</button>
             </div>
-
         </div>
-
     </div>
 
     <div id="git_freestyle_container" style="display: none;">

@@ -158,6 +158,21 @@ let view = (function () {
         });
     }
 
+    let initialiseListAllQuestionsButton = (startFetchingCallback) => {
+        document.querySelector('#all_questions_button').addEventListener('click', e=>{
+            toggleContainerDisplayWithId('all_questions_modal');
+            startFetchingCallback();
+        });
+    }
+
+    let addQuestionIntoAllQuestionsModal=(question) =>{
+        let parent = document.querySelector('#all_questions_modal');
+        let htmlDivElement = document.createElement('div');
+        htmlDivElement.innerText=question.question;
+        htmlDivElement.classList.add('question_list_entry')
+        parent.appendChild(htmlDivElement);
+    }
+
     //Api
     return {
         updateQuestion: questionsView.updateQuestion,
@@ -190,6 +205,8 @@ let view = (function () {
         viewFileContent: freeStyleView.viewFileContent,
         initaliseFileContentEditorSaveButton: freeStyleView.initaliseFileContentEditorSaveButton,
         initialiseFreeStyleInputNavigation: freeStyleView.initialiseFreeStyleInputNavigation,
-        listAllFilesInTerminal : (branch) => freeStyleView.listAllFilesInTerminal(branch)
+        listAllFilesInTerminal : (branch) => freeStyleView.listAllFilesInTerminal(branch),
+        initialiseListAllQuestionsButton: initialiseListAllQuestionsButton,
+        addQuestionIntoAllQuestionsModal:addQuestionIntoAllQuestionsModal
     };
 })();

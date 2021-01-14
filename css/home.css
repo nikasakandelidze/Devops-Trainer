@@ -28,7 +28,7 @@
 .data_container {
     background-color: #FF6F61;
     height: 15%;
-    width: 50%;
+    width: 80%;
     padding: 1%;
     display: flex;
     border-radius: 20px;
@@ -70,6 +70,36 @@
 
 #question_hint_button {
     height: 60px;
+}
+
+#all_questions_toggler{
+    width: 14%;
+    border-radius: 20px;
+    background-color: aliceblue;
+}
+
+#all_questions_modal{
+    width: 350px;
+    height: 550px;
+    background-color: #ff8296;
+    position: absolute;
+    z-index: 10;
+    left: 30%;
+    border-radius: 40px;
+    padding: 3%;
+}
+
+.question_list_entry{
+    background-color: aliceblue;
+    border-radius: 50px;
+    margin: 2%;
+    transition: ease-in-out 0.1s;
+    padding: 3%;
+}
+
+.question_list_entry:hover{
+    transform: scale(1.1);
+    background-color: lightcyan;
 }
 
 section {
