@@ -57,6 +57,8 @@ class Controller {
         view.initaliseFileContentEditorSaveButton( (content, fileName) => this.store.saveContentToFileWithName(content, fileName) );
         view.initialiseFreeStyleInputNavigation();
         view.initialiseListAllQuestionsButton(()=>this.startFetchingQuestions());
+        view.makeQuestionSubmitModalWindowListener();
+        view.submitNewQuestionButtonInit();
     }
 
     async updateInitialView () {

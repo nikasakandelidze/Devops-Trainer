@@ -121,6 +121,7 @@ let view = (function () {
             animateLeftPaddingOfElementWithId('sidebar_menu_button',  window.innerWidth, 10, -25, 'block')
                 .then(e=>console.log(e));
             makeElementWithIdApear('all_questions_toggler');
+            makeElementWithIdApear('add_question_toggler');
         }
 
         document.querySelector('#close_welcome_window').addEventListener('click', e => {
@@ -160,7 +161,7 @@ let view = (function () {
     }
 
     let initialiseListAllQuestionsButton = (startFetchingCallback) => {
-        document.querySelector('#all_questions_toggler').addEventListener('click', e=>{
+        document.querySelector('#all_questions_icon').addEventListener('click', e=>{
             toggleContainerDisplayWithId('all_questions_modal');
             startFetchingCallback();
         });
@@ -171,8 +172,39 @@ let view = (function () {
         let htmlDivElement = document.createElement('div');
         htmlDivElement.innerText=question.question;
         htmlDivElement.classList.add('question_list_entry')
+        htmlDivElement.addEventListener('click', e=>{
+
+
+        });
         parent.appendChild(htmlDivElement);
     }
+
+    let makeQuestionSubmitModalWindowListener = () => {
+        document.querySelector('#add_question_button').addEventListener('click',e=>{
+            document.querySelector('#add_question_modal').style.display='block';
+        });
+    };
+
+
+
+    let submitNewQuestionButtonInit = () => {
+        document.querySelector('#submit_new_question_button').addEventListener('click',async e=>{
+            let tempQuestion = document.querySelector('#question_input').value;
+            let tempAnswer = document.querySelector('#answer_input').value;
+            let tempDescription = document.querySelector('#description_input').value;
+            let a = {question: tempQuestion, answer: tempAnswer, description: tempDescription};
+            console.log(a)
+            let fetchResult = await fetch('http://localhost:5000/api/questions', {
+                method:'POST',
+                mode:'no-cors',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify(a)
+            });
+            return fetchResult.json();
+        });
+    };
 
     //Api
     return {
@@ -208,6 +240,8 @@ let view = (function () {
         initialiseFreeStyleInputNavigation: freeStyleView.initialiseFreeStyleInputNavigation,
         listAllFilesInTerminal : (branch) => freeStyleView.listAllFilesInTerminal(branch),
         initialiseListAllQuestionsButton: initialiseListAllQuestionsButton,
-        addQuestionIntoAllQuestionsModal:addQuestionIntoAllQuestionsModal
+        addQuestionIntoAllQuestionsModal:addQuestionIntoAllQuestionsModal,
+        makeQuestionSubmitModalWindowListener:makeQuestionSubmitModalWindowListener,
+        submitNewQuestionButtonInit:submitNewQuestionButtonInit
     };
 })();
