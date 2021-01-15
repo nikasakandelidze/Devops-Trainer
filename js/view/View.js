@@ -120,6 +120,7 @@ let view = (function () {
             scaleElement(0, 1, 0.02, 'user_input_container', 'block');
             animateLeftPaddingOfElementWithId('sidebar_menu_button',  window.innerWidth, 10, -25, 'block')
                 .then(e=>console.log(e));
+            makeElementWithIdApear('all_questions_toggler');
         }
 
         document.querySelector('#close_welcome_window').addEventListener('click', e => {
@@ -159,7 +160,7 @@ let view = (function () {
     }
 
     let initialiseListAllQuestionsButton = (startFetchingCallback) => {
-        document.querySelector('#all_questions_button').addEventListener('click', e=>{
+        document.querySelector('#all_questions_toggler').addEventListener('click', e=>{
             toggleContainerDisplayWithId('all_questions_modal');
             startFetchingCallback();
         });
