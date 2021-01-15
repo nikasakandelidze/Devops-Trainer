@@ -72,10 +72,9 @@
 
             <div id="unblur_answer_container" class="unblur_up_text" style="filter: none;">
                 <h1 class="show_text_hint_unblur">Show Answer</h1>
-            </div>
+            </div>node Q
 
             <div id="answer_hint_container" style="filter: blur(20px);" class="hint_text_container">
-
 
                 Answer: <h1 id="hint_text"></h1>
 
@@ -142,8 +141,26 @@
                 </div>
             </div>
             <div id="all_questions_toggler" style="display: none">
-                <img id="all_questions_icon" height="30%" width="30%" src="../statics/straight.svg">
+                <button id="all_questions_icon">All Questions</button>
             </div>
+            <div id="add_question_toggler" style="display: none">
+                <button id="add_question_button">Add Question</button>
+            </div>
+
+            <div id="add_question_modal" style="display: none">
+
+                <div class="question_input">
+                    <label >Question: </label><textarea class="question_input_class" id="question_input"></textarea>
+                </div>
+                <div class="question_input">
+                    <label >Answer: </label><textarea class="question_input_class" id="answer_input"></textarea>
+                </div>
+                <div class="question_input">
+                    <label>Description</label><textarea class="question_input_class" id="description_input"></textarea>
+                </div>
+                <button id="submit_new_question_button">Submit</button>
+            </div>
+
         </div>
     </div>
 
