@@ -17,6 +17,19 @@ class QuestionsApiAdapter {
         return this.currentQuestion;
     }
 
+    async addNewQuestion(question){
+        let fetchResult = await fetch(questionServiceUri, {
+            method:'POST',
+            mode:'no-cors',
+            headers:{
+                'Content-Type':'application/json',
+                'Access-Control-Allow-Origin':'*'
+            },
+            body: JSON.stringify(question)
+        });
+        return fetchResult.json();
+    }
+
     async _fetchQuestionWithId(id) {
         let response = await fetch(questionServiceUri + `/${id}`);
         if (response.ok) {

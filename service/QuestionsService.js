@@ -29,7 +29,7 @@ app.get('/api/questions/:id', (req, res) => {
 app.post('/api/questions', (req,res) => {
   res.header("Access-Control-Allow-Origin", "*");
   console.log(req.body);
-  let question = new Question(questions.length, req.body.question.question, req.body.question.answer, req.body.question.description);
+  let question = new Question(questions.length, req.body.question, req.body.answer, req.body.description);
   questions.push(question);
   console.log(123);
   res.send();
