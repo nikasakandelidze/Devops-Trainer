@@ -58,7 +58,7 @@ class Controller {
         view.initialiseFreeStyleInputNavigation();
         view.initialiseListAllQuestionsButton(()=>this.startFetchingQuestions());
         view.makeQuestionSubmitModalWindowListener();
-        view.submitNewQuestionButtonInit();
+        view.submitNewQuestionButtonInit(question=>this.store.addNewQuestion(question));
     }
 
     async updateInitialView () {

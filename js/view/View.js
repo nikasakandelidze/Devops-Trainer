@@ -187,22 +187,14 @@ let view = (function () {
 
 
 
-    let submitNewQuestionButtonInit = () => {
+    let submitNewQuestionButtonInit = (addQuestionCallback) => {
         document.querySelector('#submit_new_question_button').addEventListener('click',async e=>{
             let tempQuestion = document.querySelector('#question_input').value;
             let tempAnswer = document.querySelector('#answer_input').value;
             let tempDescription = document.querySelector('#description_input').value;
             let a = {question: tempQuestion, answer: tempAnswer, description: tempDescription};
-            console.log(a)
-            let fetchResult = await fetch('http://localhost:5000/api/questions', {
-                method:'POST',
-                mode:'no-cors',
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body: JSON.stringify(a)
-            });
-            return fetchResult.json();
+            addQuestionCallback(a)
+                .then(e=>{ console.log("added new question") });
         });
     };
 

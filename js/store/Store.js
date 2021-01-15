@@ -56,4 +56,8 @@ class Store {
     checkoutBranchWithName(branchName){
         this.sessionStore.getSession().checkoutBranchWithName(branchName);
     }
+
+    async addNewQuestion(question){
+        await this.questionStore.addNewQuestion(question);
+    }
 }
