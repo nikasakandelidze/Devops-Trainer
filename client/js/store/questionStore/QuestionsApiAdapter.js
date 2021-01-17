@@ -20,7 +20,7 @@ class QuestionsApiAdapter {
     async addNewQuestion(question){
         let fetchResult = await fetch(questionServiceUri, {
             method:'POST',
-            mode:'no-cors',
+            mode:'http://localhost',
             headers:{
                 'Content-Type':'application/json',
                 'Access-Control-Allow-Origin':'*'
