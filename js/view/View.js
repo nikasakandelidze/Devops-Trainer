@@ -110,7 +110,7 @@ let view = (function () {
 
     let initialiseWelcomeWindow = () => {
         makeElementWithIdApear('welcome_container');
-
+        makeElementWithIdApear('black_blur')
         function extracted() {
             makeElementWithIdDissapear('welcome_container');
             toggleBlurForBodyElement();
@@ -122,6 +122,7 @@ let view = (function () {
                 .then(e=>console.log(e));
             makeElementWithIdApear('all_questions_toggler');
             makeElementWithIdApear('add_question_toggler');
+            makeElementWithIdDissapear('black_blur');
         }
 
         document.querySelector('#close_welcome_window').addEventListener('click', e => {
@@ -160,32 +161,42 @@ let view = (function () {
         });
     }
 
-    let initialiseListAllQuestionsButton = (startFetchingCallback) => {
+    let initialiseListAllQuestionsButton = (startFetchingCallback, stopFetching) => {
+        let isStarted = false;
         document.querySelector('#all_questions_icon').addEventListener('click', e=>{
             toggleContainerDisplayWithId('all_questions_modal');
-            startFetchingCallback();
+            if(!isStarted){
+                startFetchingCallback();
+                makeElementWithIdApear('black_blur');
+                isStarted=true;
+            }else{
+                stopFetching();
+                makeElementWithIdDissapear('black_blur');
+                isStarted=false;
+            }
         });
-    }
+    };
 
     let addQuestionIntoAllQuestionsModal=(question) =>{
         let parent = document.querySelector('#all_questions_modal');
         let htmlDivElement = document.createElement('div');
         htmlDivElement.innerText=question.question;
-        htmlDivElement.classList.add('question_list_entry')
+        htmlDivElement.classList.add('question_list_entry');
         htmlDivElement.addEventListener('click', e=>{
-
-
         });
         parent.appendChild(htmlDivElement);
     }
 
     let makeQuestionSubmitModalWindowListener = () => {
         document.querySelector('#add_question_button').addEventListener('click',e=>{
-            document.querySelector('#add_question_modal').style.display='block';
+            toggleContainerDisplayWithId('add_question_modal');
+            toggleContainerDisplayWithId('black_blur');
+        });
+        document.querySelector('#close_add_question_modal').addEventListener('click', e=>{
+            toggleContainerDisplayWithId('add_question_modal');
+            toggleContainerDisplayWithId('black_blur');
         });
     };
-
-
 
     let submitNewQuestionButtonInit = (addQuestionCallback) => {
         document.querySelector('#submit_new_question_button').addEventListener('click',async e=>{
@@ -193,6 +204,8 @@ let view = (function () {
             let tempAnswer = document.querySelector('#answer_input').value;
             let tempDescription = document.querySelector('#description_input').value;
             let a = {question: tempQuestion, answer: tempAnswer, description: tempDescription};
+            makeElementWithIdDissapear('add_question_modal');
+            toggleContainerDisplayWithId('black_blur');
             addQuestionCallback(a)
                 .then(e=>{ console.log("added new question") });
         });
@@ -231,7 +244,7 @@ let view = (function () {
         initaliseFileContentEditorSaveButton: freeStyleView.initaliseFileContentEditorSaveButton,
         initialiseFreeStyleInputNavigation: freeStyleView.initialiseFreeStyleInputNavigation,
         listAllFilesInTerminal : (branch) => freeStyleView.listAllFilesInTerminal(branch),
-        initialiseListAllQuestionsButton: initialiseListAllQuestionsButton,
+        initialiseListAllQuestionsButton:(start,stop)=> initialiseListAllQuestionsButton(start,stop),
         addQuestionIntoAllQuestionsModal:addQuestionIntoAllQuestionsModal,
         makeQuestionSubmitModalWindowListener:makeQuestionSubmitModalWindowListener,
         submitNewQuestionButtonInit:submitNewQuestionButtonInit

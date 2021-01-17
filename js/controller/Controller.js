@@ -56,7 +56,7 @@ class Controller {
         view.initialiseFreeStyleConsoleInput((input)=>this.terminalCommandEngine.processAppropriateCommand(input));
         view.initaliseFileContentEditorSaveButton( (content, fileName) => this.store.saveContentToFileWithName(content, fileName) );
         view.initialiseFreeStyleInputNavigation();
-        view.initialiseListAllQuestionsButton(()=>this.startFetchingQuestions());
+        view.initialiseListAllQuestionsButton(()=>this.startFetchingQuestions(), ()=>this.stopFetchingQuestion());
         view.makeQuestionSubmitModalWindowListener();
         view.submitNewQuestionButtonInit(question=>this.store.addNewQuestion(question));
     }
@@ -78,12 +78,16 @@ class Controller {
 
     startFetchingQuestions(){
         let tempStore = this.store;
-        setInterval(async ()=>{
+        this.questionFetching = setInterval(async ()=>{
             let currentQuestion = await tempStore.getCurrentQuestion();
             tempStore.getNextQuestion();
             view.addQuestionIntoAllQuestionsModal(currentQuestion);
             //todo: stop it whenever needed. JSON excpetion after going through all quesitons.
             //todo: add X button for all question modal window and also improve design of all quesiton button/toggler
         }, 1000);
+    }
+
+    stopFetchingQuestion(){
+        clearInterval(this.questionFetching)
     }
 }
