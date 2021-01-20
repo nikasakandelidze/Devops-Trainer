@@ -303,7 +303,7 @@ section {
 }
 
 #sidebar_menu_button:hover{
-    transform: rotate(360deg) scale(1.3);
+    transform: scale(1.3);
 }
 
 #close_side_bar {

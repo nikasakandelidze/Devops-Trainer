@@ -94,7 +94,11 @@ class FreeStyleView {
                 let commitHash = document.createElement('h5');
                 commitHash.innerText = 'Hash: ' + commit.getHash();
                 newCommitElement.appendChild(commitHash)
-                newCommitElement.appendChild(this.createImageElement());
+                let newCommitLogo = document.createElement('img');
+                newCommitLogo.src = '../../client/statics/circle.svg';
+                newCommitLogo.width = 60;
+                newCommitLogo.height = 60;
+                newCommitElement.appendChild(newCommitLogo);
                 parent.appendChild(newCommitElement);
                 newCommitElement.addEventListener('click', e => {
                     if (isDetailsCardVisible) {
@@ -102,7 +106,15 @@ class FreeStyleView {
                         isDetailsCardVisible = false;
                     } else {
                         let commitDetailsCard = document.createElement('div');
-                        commitDetailsCard.appendChild(this.createCommitDetailsElement(commit));
+                        let commitDetails = document.createElement('div');
+                        let commitHash = document.createElement('h3');
+                        commitHash.innerText = 'Hash: ' + commit.getHash();
+                        let commitMessage = document.createElement('h5');
+                        commitMessage.innerText = "Message: " + commit.getMessage();
+                        commitDetails.appendChild(commitHash);
+                        commitDetails.appendChild(commitMessage);
+                        commitDetails.appendChild(this.getListOfFileNamesInCommit(commit));
+                        commitDetailsCard.appendChild(commitDetails);
                         commitDetailsCard.classList.add('commit_detail_card');
                         newCommitElement.appendChild(commitDetailsCard);
                         isDetailsCardVisible = true;
@@ -113,26 +125,6 @@ class FreeStyleView {
         });
     }
 
-
-    createCommitDetailsElement(commit) {
-        let commitDetails = document.createElement('div');
-        let commitHash = document.createElement('h3');
-        commitHash.innerText = 'Hash: ' + commit.getHash();
-        let commitMessage = document.createElement('h5');
-        commitMessage.innerText = "Message: " + commit.getMessage();
-        commitDetails.appendChild(commitHash);
-        commitDetails.appendChild(commitMessage);
-        commitDetails.appendChild(this.getListOfFileNamesInCommit(commit));
-        return commitDetails;
-    }
-
-    createImageElement() {
-        let newCommitLogo = document.createElement('img');
-        newCommitLogo.src = '../../client/statics/circle.svg';
-        newCommitLogo.width = 60;
-        newCommitLogo.height = 60;
-        return newCommitLogo;
-    }
 
     initialiseFreeStyleInputNavigation() {
         function initialiseFreeStyleConsoleSizeChangerButton(id, elementId) {
