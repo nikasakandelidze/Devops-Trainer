@@ -315,12 +315,11 @@ section {
 .commit_detail_card{
     height: 300px;
     width: 200px;
-    border: black solid 1px;
-    background-color: #ff8296;
-    padding-left: 1%;
-    padding-top: 1%;
+    background-color: #f7ff8e;
     border-radius: 20px;
     position: absolute;
+    align-content: center;
+    padding: 1%;
 }
 
 .branch_container{
@@ -334,7 +333,8 @@ section {
 #freestyle_visualisation_container {
     width: 100%;
     height: 100%;
-    background-color: #f1f1f1;
+    background-color: lightblue;
+    border-radius: 20px;
 }
 
 #git_freestyle_container{
@@ -350,12 +350,10 @@ section {
     padding-left: 1%;
     padding-bottom: 1%;
     position: relative;
-    /*top: 40%;*/
-    left: 5%;
 }
 
 .commit_element:hover{
-    background-color: #ff8296;
+    transform: scale(1.2);
 }
 
 .commit_details:hover{
@@ -382,6 +380,7 @@ section {
 #parent_freestyle_container{
     width: 100%;
     height: 100%;
+    border-radius: 20px;
 }
 
 #freestyle_body{
