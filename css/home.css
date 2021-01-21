@@ -365,11 +365,18 @@ section {
 
 #freestyle_input_container {
     text-align: center;
-    background-color: lightblue;
+    /*background-color: lightblue;*/
     position: absolute;
+    z-index: 2;
     border-radius: 20px;
     padding: 2%;
     width: 300px;
+}
+
+#freestyle_terminal_header{
+    border-radius: 10px;
+    padding: 1%;
+    background-color: lightcyan;
 }
 
 #parent_freestyle_container{
@@ -380,6 +387,7 @@ section {
 #freestyle_body{
     height: 100%;
     width: 100%;
+    background-color: lightcyan;
 }
 
 .flex_container{

@@ -60,24 +60,24 @@ class FreeStyleView {
     }
 
 
-    getListOfFileNamesInCommit(commit) {
-        let list = document.createElement('div');
-        let heading = document.createElement('h3');
-        heading.innerText = 'Files';
-        list.appendChild(heading);
-        let listOfFilenames = document.createElement('ul');
-        let fileNames = commit.getFileNamesOfCommit();
-        fileNames.forEach(name => {
-            let listItem = document.createElement('li');
-            listItem.innerText = name;
-            listOfFilenames.appendChild(listItem);
-        });
-        list.appendChild(listOfFilenames)
-        return list;
-    };
-
-
     updateFreeStyleBranchesView(branchesArray) {
+        let _getListOfFileNamesInCommit = commit => {
+            let list = document.createElement('div');
+            let heading = document.createElement('h3');
+            heading.innerText = 'Files';
+            list.appendChild(heading);
+            let listOfFilenames = document.createElement('ul');
+            let fileNames = commit.getFileNamesOfCommit();
+            fileNames.forEach(name => {
+                let listItem = document.createElement('li');
+                listItem.innerText = name;
+                listOfFilenames.appendChild(listItem);
+            });
+            list.appendChild(listOfFilenames)
+            return list;
+        }
+
+
         let parentContainerForBranches = document.querySelector('#freestyle_visualisation_container');
         parentContainerForBranches.innerHTML = '';
         branchesArray.map(branch => {
@@ -113,7 +113,7 @@ class FreeStyleView {
                         commitMessage.innerText = "Message: " + commit.getMessage();
                         commitDetails.appendChild(commitHash);
                         commitDetails.appendChild(commitMessage);
-                        commitDetails.appendChild(this.getListOfFileNamesInCommit(commit));
+                        commitDetails.appendChild(_getListOfFileNamesInCommit(commit));
                         commitDetailsCard.appendChild(commitDetails);
                         commitDetailsCard.classList.add('commit_detail_card');
                         newCommitElement.appendChild(commitDetailsCard);
