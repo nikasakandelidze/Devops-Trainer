@@ -3,7 +3,9 @@ let questionStore = new QuestionsApiAdapter();
 
 let sessionStore = new FreestyleSessionStore();
 
-let rootStore = new Store(questionStore, sessionStore);
+let githubAdapter = new GithubAdapter();
+
+let rootStore = new Store(questionStore, sessionStore, githubAdapter);
 
 let controller = new Controller(rootStore, view);
 

@@ -1,7 +1,8 @@
 class Store {
-    constructor(questionStore, sessionStore) {
+    constructor(questionStore, sessionStore, githubAdapter) {
         this.sessionStore = sessionStore;
         this.questionStore = questionStore;
+        this.githubAdapter = githubAdapter;
     }
 
     getNextQuestion(){
@@ -9,8 +10,7 @@ class Store {
     }
 
     isInputtedCommandCorrect(command){
-        return this.questionStore.getCurrentQuestion()
-            .then(e=>command===e.answer)
+        return this.questionStore.getCurrentQuestion().answer === command;
     }
 
     getCurrentQuestion(){
@@ -57,7 +57,11 @@ class Store {
         this.sessionStore.getSession().checkoutBranchWithName(branchName);
     }
 
-    async addNewQuestion(question){
-        await this.questionStore.addNewQuestion(question);
+    addNewQuestion(question){
+        this.questionStore.addNewQuestion(question);
+    }
+
+    async getGithubInfo(){
+        return await this.githubAdapter.getGithubInfo();
     }
 }

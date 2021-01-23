@@ -84,9 +84,7 @@ let view = (function () {
 
     let initialiseGetHintButtonListener = (getCurrentQuestion) => {
         document.querySelector("#question_hint_button").addEventListener('click', e => {
-            getCurrentQuestion().then(e => {
-                view.toggleCurrentQuestionHint(e);
-            });
+            view.toggleCurrentQuestionHint(getCurrentQuestion());
         });
     }
 
@@ -111,25 +109,26 @@ let view = (function () {
     let initialiseWelcomeWindow = () => {
         makeElementWithIdApear('welcome_container');
         makeElementWithIdApear('black_blur')
-        function extracted() {
+
+        function startUserSessionWithApp() {
             makeElementWithIdDissapear('welcome_container');
             toggleBlurForBodyElement();
             document.querySelector('#console_input').focus();
             // animateLeftPaddingOfElementWithId('sidebar_menu_button',  window.innerWidth, 50, -50, 'block');
             scaleElement(0, 1, 0.05, 'question_data', 'flex');
             scaleElement(0, 1, 0.02, 'user_input_container', 'block');
-            animateLeftPaddingOfElementWithId('sidebar_menu_button',  window.innerWidth, 10, -25, 'block')
-                .then(e=>console.log(e));
+            animateLeftPaddingOfElementWithId('sidebar_menu_button', window.innerWidth, 10, -25, 'block')
+                .then(e => console.log(e));
             makeElementWithIdApear('all_questions_toggler');
             makeElementWithIdApear('add_question_toggler');
             makeElementWithIdDissapear('black_blur');
         }
 
         document.querySelector('#close_welcome_window').addEventListener('click', e => {
-            extracted();
+            startUserSessionWithApp();
         });
         document.querySelector('#welcome_continue_button').addEventListener('click', e => {
-            extracted();
+            startUserSessionWithApp();
         })
         welcomePageTyper();
 
@@ -140,10 +139,13 @@ let view = (function () {
         document.querySelector('#sidebar_menu_button').addEventListener('click', e => {
             toggleContainerDisplayWithId('side_bar_menu');
             changeOpacity(0, 1, 0.1, 'side_bar_menu');
+            makeElementWithIdApear('black_blur')
+            changeOpacity(0,0.3,0.01,'black_blur');
         });
         document.querySelector('#close_side_bar').addEventListener('click', e => {
             toggleContainerDisplayWithId('side_bar_menu');
             changeOpacity(1, 0, -0.1, 'side_bar_menu');
+            makeElementWithIdDissapear('black_blur');
         });
     }
 
@@ -163,53 +165,89 @@ let view = (function () {
 
     let initialiseListAllQuestionsButton = (startFetchingCallback, stopFetching) => {
         let isStarted = false;
-        document.querySelector('#all_questions_icon').addEventListener('click', e=>{
+        document.querySelector('#all_questions_icon').addEventListener('click', e => {
             toggleContainerDisplayWithId('all_questions_modal');
-            if(!isStarted){
+            if (!isStarted) {
                 startFetchingCallback();
                 makeElementWithIdApear('black_blur');
-                isStarted=true;
-            }else{
+                isStarted = true;
+            } else {
                 stopFetching();
                 makeElementWithIdDissapear('black_blur');
-                isStarted=false;
+                isStarted = false;
             }
+        });
+        document.querySelector('#close_all_questions').addEventListener('click', e=>{
+            toggleContainerDisplayWithId('all_questions_modal');
+            toggleContainerDisplayWithId('black_blur');
         });
     };
 
-    let addQuestionIntoAllQuestionsModal=(question) =>{
+    let addQuestionIntoAllQuestionsModal = (question) => {
         let parent = document.querySelector('#all_questions_modal');
         let htmlDivElement = document.createElement('div');
-        htmlDivElement.innerText=question.question;
+        htmlDivElement.innerText = question.question;
         htmlDivElement.classList.add('question_list_entry');
-        htmlDivElement.addEventListener('click', e=>{
-        });
         parent.appendChild(htmlDivElement);
     }
 
     let makeQuestionSubmitModalWindowListener = () => {
-        document.querySelector('#add_question_button').addEventListener('click',e=>{
+        document.querySelector('#add_question_button').addEventListener('click', e => {
             toggleContainerDisplayWithId('add_question_modal');
             toggleContainerDisplayWithId('black_blur');
         });
-        document.querySelector('#close_add_question_modal').addEventListener('click', e=>{
+        document.querySelector('#add_question_close_button').addEventListener('click', e => {
             toggleContainerDisplayWithId('add_question_modal');
             toggleContainerDisplayWithId('black_blur');
         });
     };
 
     let submitNewQuestionButtonInit = (addQuestionCallback) => {
-        document.querySelector('#submit_new_question_button').addEventListener('click',async e=>{
+        document.querySelector('#submit_new_question_button').addEventListener('click', async e => {
             let tempQuestion = document.querySelector('#question_input').value;
             let tempAnswer = document.querySelector('#answer_input').value;
             let tempDescription = document.querySelector('#description_input').value;
             let a = {question: tempQuestion, answer: tempAnswer, description: tempDescription};
             makeElementWithIdDissapear('add_question_modal');
             toggleContainerDisplayWithId('black_blur');
-            addQuestionCallback(a)
-                .then(e=>{ console.log("added new question") });
+            addQuestionCallback(a);
         });
     };
+
+    let initAboutToggler = (getGithubInfo) => {
+        document.querySelector('#about_page_toggler').addEventListener('click', async e => {
+            makeElementWithIdApear('about_me_container');
+            let githubInfo = await getGithubInfo();
+            let element = document.querySelector('#my_github_projects');
+            Array.from(githubInfo).forEach(e=>{
+                let project = document.createElement('div');
+                project.classList.add('proj_container')
+
+                let name = document.createElement('div');
+                name.innerText="Name:  "+ e.name;
+                name.classList.add('proj_name_container')
+                project.appendChild(name);
+
+                let description = document.createElement('div');
+                description.innerText="Description:  "+e.description;
+                description.classList.add('proj_description_container');
+                project.appendChild(description);
+
+                let link = document.createElement('div');
+                link.innerText="Link:  "+e['html_url'];
+                link.classList.add('proj_link_container');
+                project.appendChild(link);
+
+                element.appendChild(project)
+            });
+        })
+
+        document.querySelector('#close_about_me_button').addEventListener('click', e=>{
+            toggleContainerDisplayWithId('about_me_container');
+        });
+    }
+
+
 
     //Api
     return {
@@ -243,10 +281,11 @@ let view = (function () {
         viewFileContent: freeStyleView.viewFileContent,
         initaliseFileContentEditorSaveButton: freeStyleView.initaliseFileContentEditorSaveButton,
         initialiseFreeStyleInputNavigation: freeStyleView.initialiseFreeStyleInputNavigation,
-        listAllFilesInTerminal : (branch) => freeStyleView.listAllFilesInTerminal(branch),
-        initialiseListAllQuestionsButton:(start,stop)=> initialiseListAllQuestionsButton(start,stop),
-        addQuestionIntoAllQuestionsModal:addQuestionIntoAllQuestionsModal,
-        makeQuestionSubmitModalWindowListener:makeQuestionSubmitModalWindowListener,
-        submitNewQuestionButtonInit:submitNewQuestionButtonInit
+        listAllFilesInTerminal: (branch) => freeStyleView.listAllFilesInTerminal(branch),
+        initialiseListAllQuestionsButton: (start, stop) => initialiseListAllQuestionsButton(start, stop),
+        addQuestionIntoAllQuestionsModal: addQuestionIntoAllQuestionsModal,
+        makeQuestionSubmitModalWindowListener: makeQuestionSubmitModalWindowListener,
+        submitNewQuestionButtonInit: submitNewQuestionButtonInit,
+        initAboutToggler:initAboutToggler
     };
 })();
