@@ -1,9 +1,14 @@
 class Question{
 
-    constructor(question, answer, description) {
+    constructor(id,question, answer, description) {
         this.question = question;
         this.answer = answer;
         this.description = description;
+        this.id = id;
+    }
+
+    getId(){
+        return this.id;
     }
 
     getQuestion(){

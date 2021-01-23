@@ -81,7 +81,7 @@
 
 #close_add_question_modal{
     display: inline-block;
-    padding-left: 4px;
+    padding: 2%;
     width: 20px;
     height: 20px;
     background-color: lightcyan;
@@ -138,6 +138,98 @@
     height: 530px;
     background-color: #f7ff8e;
     left: 400px;
+}
+
+#contact_me_cotnainer{
+    margin-left: 30%;
+}
+
+.contact_container{
+    padding: 2%;
+    margin: 2%;
+}
+
+.github_proj_container{
+    text-align: center;
+    /*background-color: lightcyan;*/
+}
+
+
+#my_github_projects{
+    height: 50%;
+    overflow-y: scroll;
+    border: 2px solid gray;
+    padding: 2%;
+    border-radius: 40px;
+    margin: 1%;
+}
+
+.proj_container{
+    background-color: aliceblue;
+    border-radius: 40px;
+    padding: 2%;
+    margin: 1%;
+    transition: ease-in-out 0.2s;
+}
+
+.proj_container:hover{
+    transform: scale(1.05);
+    background-color: #ff8296;
+}
+
+.proj_name_container{
+    font-size: xx-large;
+}
+
+.proj_description_container{
+    font-size: x-large;
+}
+
+#close_welcome_window{
+    float: left;
+}
+
+.proj_link_container{
+    font-size: large;
+}
+
+#my_projects_header{
+    font-size: xx-large;
+    color: #ff8296;
+    text-align: center;
+    font-family: Cousine;
+}
+
+.close_button{
+    margin: 2%;
+    transition: ease-in-out 0.1s;
+    border-radius: 50px;
+}
+
+.close_button img:hover{
+    transform: scale(1.1);
+}
+
+#about_me_container{
+    position: absolute;
+    left: 10%;
+    top: 5%;
+    z-index: 20;
+    width: 80%;
+    height: 85%;
+    background-color: #f7ff8e;
+    border-radius: 10px;
+    overflow-y: hidden;
+    padding-bottom: 2%;
+}
+
+#contact_me_header{
+    font-size: xxx-large;
+    font-family: Cousine;
+    margin-left: 6%;
+}
+
+#contact_social_networks_container{
 }
 
 #buttons_for_questions{
