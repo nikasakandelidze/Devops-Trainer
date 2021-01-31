@@ -188,8 +188,10 @@ section {
     width: 700px;
     height: 500px;
     position: absolute;
+    z-index: 20;
     margin-left: 17%;
     border-radius: 20px;
+    background-color: #ff8296;
 }
 
 .modal {
@@ -328,6 +330,8 @@ section {
     border-radius: 30px;
     width: 100%;
     height: 40%;
+    margin: 2%;
+    border: 5px solid black;
 }
 
 #freestyle_visualisation_container {

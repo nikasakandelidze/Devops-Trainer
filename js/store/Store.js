@@ -21,6 +21,10 @@ class Store {
         return this.sessionStore.getSession().getBranchesOfSession();
     }
 
+    getCurrentBranch(){
+        return this.sessionStore.getSession().getCurrentBranch();
+    }
+
     addNewFile(fileName, content){
         this.sessionStore.getSession().getCurrentBranch().addNewFile(fileName,content);
     }
@@ -43,5 +47,13 @@ class Store {
 
     saveContentToFileWithName(content, fileName){
         this.sessionStore.getSession().getCurrentBranch().saveContentToFileWithName(content, fileName);
+    }
+
+    addNewBranchWithName(branchName){
+        this.sessionStore.getSession().createNewBranchInSessionWithName(branchName);
+    }
+
+    checkoutBranchWithName(branchName){
+        this.sessionStore.getSession().checkoutBranchWithName(branchName);
     }
 }

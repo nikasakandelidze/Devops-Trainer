@@ -1,12 +1,14 @@
 class TerminalCommands {
 
-    constructor(createNewFileCallback, listAllFilesCallback, stageFileWithNameCallback, commitStagedFilesCallback, editFileContentCallback, listFilesInTerminalCallback) {
+    constructor(createNewFileCallback, listAllFilesCallback, stageFileWithNameCallback, commitStagedFilesCallback, editFileContentCallback, listFilesInTerminalCallback, createNewBranchCallback, checkoutBranchWithName) {
         this.createNewFileCallback = createNewFileCallback;
         this.listAllFilesCallback = listAllFilesCallback;
         this.gitAddFileWithNameCallback = stageFileWithNameCallback;
         this.commitStagedFilesCallback = commitStagedFilesCallback;
         this.editFileContentcallback = editFileContentCallback;
         this.listFilesInTerminalCallback = listFilesInTerminalCallback;
+        this.createNewBranchCallback = createNewBranchCallback;
+        this.checkoutBranchWithName = checkoutBranchWithName;
     }
 
     processAppropriateCommand(inputCommand){
@@ -26,6 +28,10 @@ class TerminalCommands {
             this.editFileContentcallback(fileName);
         }else if(inputCommand==='git status'){
             this.listFilesInTerminalCallback();
+        }else if(inputCommand.includes('git checkout -b')){
+            this.createNewBranchCallback(inputCommand.split(" ")[3]);
+        }else if(inputCommand.includes('git checkout ')){
+            this.checkoutBranchWithName(inputCommand.split(" ")[2]);
         }
     }
 }

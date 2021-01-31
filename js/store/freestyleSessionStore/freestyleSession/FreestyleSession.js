@@ -22,12 +22,10 @@ class FreestyleSession {
     }
 
     getBranchWithTheName(branchName) {
-        return this.branches.filter(e => e === branchName);
+        return this.branches.filter(e => e.getBranchName() === branchName);
     }
 
-    checkoutBranchWithName(newBranchName){
-        let newBranch = new Branch(newBranchName);
-        this.branches.push(newBranchName);
-        this.currentBranch = newBranch;
+    checkoutBranchWithName(branchName){
+        this.currentBranch = this.getBranchWithTheName(branchName)[0];
     }
 }
