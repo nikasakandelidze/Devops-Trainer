@@ -163,9 +163,12 @@ class FreeStyleView {
         initialiseFreeStyleConsoleSizeChangerButton('change_freestyle_window_size_button', 'freestyle_body');
     }
 
-    listAllFilesInTerminal(files) {
+    listAllFilesInTerminal(currentBranch) {
+        console.log(currentBranch);
+        let files = currentBranch.getFiles();
         let parentElement = document.createElement('div');
         parentElement.classList.add('flex_container');
+        if(files.size() === 0) return;
         files.forEach(file => {
             let newElement = document.createElement('span');
             newElement.innerHTML = file.getFileName();
@@ -176,7 +179,11 @@ class FreeStyleView {
             }
             parentElement.appendChild(newElement);
         });
+
+        let branchName = document.createElement('div');
+        branchName.innerText='Branch: ' +currentBranch.getBranchName();
         document.querySelector('#console_input_freestyle').value = '';
+        document.querySelector('#freestyle_history_of_inputs').appendChild(parentElement);
         document.querySelector('#freestyle_history_of_inputs').appendChild(parentElement);
     }
 

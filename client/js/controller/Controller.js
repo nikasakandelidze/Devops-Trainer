@@ -23,8 +23,17 @@ class Controller {
                 this.view.viewFileContent(content, fileName);
             },
             () => {
-                let files=this.store.getAllFiles();
-                view.listAllFilesInTerminal(files);
+                let currentBranch=this.store.getCurrentBranch();
+                console.log(this.store.getCurrentBranch().getFiles());
+                view.listAllFilesInTerminal(currentBranch);
+            },
+            (branchName)=>{
+                this.store.addNewBranchWithName(branchName);
+                this.store.checkoutBranchWithName(branchName);
+                this.view.updateFreeStyleBranchesView(this.store.getBranchesOfSession());
+            },
+            (branchName)=>{
+                this.store.checkoutBranchWithName(branchName);
             }
         );
         this.initialiseEventListeners();
