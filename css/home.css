@@ -13,8 +13,9 @@
     text-align: center;
     position: absolute;
     border-radius: 20px;
+    border: 1px solid black;
     z-index: 2;
-    padding: 2%;
+    padding: 1%;
     width: 308px;
 }
 
@@ -362,12 +363,13 @@ section {
 }
 
 #freestyle_input_container {
+    border: 1px solid black;
     text-align: center;
     /*background-color: lightblue;*/
     position: absolute;
     z-index: 2;
     border-radius: 20px;
-    padding: 2%;
+    padding: 1%;
     width: 300px;
 }
 
