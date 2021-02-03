@@ -364,7 +364,7 @@ section {
 #freestyle_input_container {
     border: 1px solid lightskyblue;
     text-align: center;
-    /*background-color: lightblue;*/
+    background-color: aliceblue;
     position: absolute;
     z-index: 2;
     border-radius: 20px;
