@@ -13,7 +13,8 @@
     text-align: center;
     position: absolute;
     border-radius: 20px;
-    border: 1px solid black;
+    background-color: aliceblue;
+    border: 1px solid lightskyblue;
     z-index: 2;
     padding: 1%;
     width: 308px;
@@ -324,9 +325,7 @@ section {
 }
 
 .branch_container{
-    border: 1px solid black;
     border-radius: 30px;
-    background-color: whitesmoke;
     width: 100%;
     height: 40%;
 }
@@ -363,7 +362,7 @@ section {
 }
 
 #freestyle_input_container {
-    border: 1px solid black;
+    border: 1px solid lightskyblue;
     text-align: center;
     /*background-color: lightblue;*/
     position: absolute;
