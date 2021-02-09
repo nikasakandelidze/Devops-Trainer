@@ -168,8 +168,7 @@ class FreeStyleView {
         let files = currentBranch.getFiles();
         let parentElement = document.createElement('div');
         parentElement.classList.add('flex_container');
-        if(files.size() === 0) return;
-        files.forEach(file => {
+        Array.from(files).forEach(file => {
             let newElement = document.createElement('span');
             newElement.innerHTML = file.getFileName();
             if(file.getIsStaged()){
@@ -181,10 +180,10 @@ class FreeStyleView {
         });
 
         let branchName = document.createElement('div');
-        branchName.innerText='Branch: ' +currentBranch.getBranchName();
+        branchName.innerText='branch ==>  ' +currentBranch.getBranchName();
         document.querySelector('#console_input_freestyle').value = '';
         document.querySelector('#freestyle_history_of_inputs').appendChild(parentElement);
-        document.querySelector('#freestyle_history_of_inputs').appendChild(parentElement);
+        document.querySelector('#freestyle_history_of_inputs').appendChild(branchName);
     }
 
 }
