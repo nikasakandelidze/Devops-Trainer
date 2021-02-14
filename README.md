@@ -6,6 +6,7 @@
 	- Question/Answer part
 	- Free style part
 	
+	Project is fully written in vanilla javascript, without any framework like React or Angluar, the reason being for author to get more familliar with the Javascript language and get the fundamental idea of the inner workings web platforms. 	
 
 ## Detailed information about Git Trainer sub-program
 	So as said above, Git trainer has 2 main parts, let's review them seperately to make everything explicit.
@@ -44,6 +45,10 @@
 	
 	Commits of branches are visuallized on the main page of Freestyle project. They are partitioned by branches, each commit has it's own part(circle icon), upon pressing it pop-up window appers with detailed information about pressed commit.	
 	
+## Next steps
+	Next step is to make Style of the Git trainer more robust and also add second sub-program for Docker trainer using images and container visualizations
+
+
 ## Link to Deployed env.
     Deployed env: https://nikasakandelidze.github.io/Devops-Trainer/
   
